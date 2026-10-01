@@ -1,0 +1,69 @@
+"use client"
+import Image from 'next/image'
+import React from 'react'
+import logo from "../../public/logo.png"
+import Link from 'next/link';
+import { FaBars } from 'react-icons/fa';
+import { FaX } from 'react-icons/fa6';
+import { useState } from 'react';
+
+const BookIcon = () => (
+  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" className="shrink-0">
+    <path d="M5.67899 0.740741C5.67899 0.544284 5.60095 0.355874 5.46203 0.216958C5.32312 0.0780421 5.13471 0 4.93825 0C4.74179 0 4.55338 0.0780421 4.41447 0.216958C4.27555 0.355874 4.19751 0.544284 4.19751 0.740741V2.30123C2.77529 2.41481 1.84294 2.69333 1.15751 3.37975C0.471089 4.06519 0.192571 4.99852 0.0780029 6.41975H19.675C19.5605 4.99753 19.282 4.06519 18.5955 3.37975C17.9101 2.69333 16.9768 2.41481 15.5555 2.30025V0.740741C15.5555 0.544284 15.4775 0.355874 15.3386 0.216958C15.1997 0.0780421 15.0112 0 14.8148 0C14.6183 0 14.4299 0.0780421 14.291 0.216958C14.1521 0.355874 14.0741 0.544284 14.0741 0.740741V2.23506C13.4173 2.22222 12.6805 2.22222 11.8518 2.22222H7.90121C7.07257 2.22222 6.33578 2.22222 5.67899 2.23506V0.740741Z" fill="currentColor"/>
+    <path fillRule="evenodd" clipRule="evenodd" d="M0 10.1235C0 9.29482 1.10379e-08 8.55803 0.0128395 7.90124H19.7402C19.7531 8.55803 19.7531 9.29482 19.7531 10.1235V12.0988C19.7531 15.8232 19.7531 17.6859 18.5956 18.8425C17.438 19.999 15.5763 20 11.8519 20H7.90123C4.17679 20 2.31407 20 1.15753 18.8425C0.000987583 17.6849 0 15.8232 0 12.0988V10.1235ZM14.8148 12.0988C15.0768 12.0988 15.328 11.9947 15.5132 11.8095C15.6984 11.6243 15.8025 11.3731 15.8025 11.1111C15.8025 10.8492 15.6984 10.598 15.5132 10.4127C15.328 10.2275 15.0768 10.1235 14.8148 10.1235C14.5529 10.1235 14.3017 10.2275 14.1164 10.4127C13.9312 10.598 13.8272 10.8492 13.8272 11.1111C13.8272 11.3731 13.9312 11.6243 14.1164 11.8095C14.3017 11.9947 14.5529 12.0988 14.8148 12.0988ZM14.8148 16.0494C15.0768 16.0494 15.328 15.9453 15.5132 15.7601C15.6984 15.5749 15.8025 15.3237 15.8025 15.0617C15.8025 14.7998 15.6984 14.5486 15.5132 14.3634C15.328 14.1781 15.0768 14.0741 14.8148 14.0741C14.5529 14.0741 14.3017 14.1781 14.1164 14.3634C13.9312 14.5486 13.8272 14.7998 13.8272 15.0617C13.8272 15.3237 13.9312 15.5749 14.1164 15.7601C14.3017 15.9453 14.5529 16.0494 14.8148 16.0494ZM10.8642 11.1111C10.8642 11.3731 10.7601 11.6243 10.5749 11.8095C10.3897 11.9947 10.1385 12.0988 9.87654 12.0988C9.6146 12.0988 9.36339 11.9947 9.17817 11.8095C8.99295 11.6243 8.88889 11.3731 8.88889 11.1111C8.88889 10.8492 8.99295 10.598 9.17817 10.4127C9.36339 10.2275 9.6146 10.1235 9.87654 10.1235C10.1385 10.1235 10.3897 10.2275 10.5749 10.4127C10.7601 10.598 10.8642 10.8492 10.8642 11.1111ZM10.8642 15.0617C10.8642 15.3237 10.7601 15.5749 10.5749 15.7601C10.3897 15.9453 10.1385 16.0494 9.87654 16.0494C9.6146 16.0494 9.36339 15.9453 9.17817 15.7601C8.99295 15.5749 8.88889 15.3237 8.88889 15.0617C8.88889 14.7998 8.99295 14.5486 9.17817 14.3634C9.36339 14.1781 9.6146 14.0741 9.87654 14.0741C10.1385 14.0741 10.3897 14.1781 10.5749 14.3634C10.7601 14.5486 10.8642 14.7998 10.8642 15.0617ZM4.93827 12.0988C5.20021 12.0988 5.45143 11.9947 5.63665 11.8095C5.82187 11.6243 5.92593 11.3731 5.92593 11.1111C5.92593 10.8492 5.82187 10.598 5.63665 10.4127C5.45143 10.2275 5.20021 10.1235 4.93827 10.1235C4.67633 10.1235 4.42512 10.2275 4.23989 10.4127C4.05467 10.598 3.95062 10.8492 3.95062 11.1111C3.95062 11.3731 4.05467 11.6243 4.23989 11.8095C4.42512 11.9947 4.67633 12.0988 4.93827 12.0988ZM4.93827 16.0494C5.20021 16.0494 5.45143 15.9453 5.63665 15.7601C5.82187 15.5749 5.92593 15.3237 5.92593 15.0617C5.92593 14.7998 5.82187 14.5486 5.63665 14.3634C5.45143 14.1781 5.20021 14.0741 4.93827 14.0741C4.67633 14.0741 4.42512 14.1781 4.23989 14.3634C4.05467 14.5486 3.95062 14.7998 3.95062 15.0617C3.95062 15.3237 4.05467 15.5749 4.23989 15.7601C4.42512 15.9453 4.67633 16.0494 4.93827 16.0494Z" fill="currentColor"/>
+  </svg>
+);
+
+const NavBar = () => {
+    const [isOpen,setIsOpen]=useState(false);
+    const navItems=["Home","Hearing Aids","Services","Shop","Fees","Audiology Expert","Our Location","Contact Us","About Us"];
+  return (
+    <nav className='sticky cursor-pointer top-0 z-50 w-360 h-20 flex items-center justify-between gap-4 xl:gap-8 px-4 sm:px-8 lg:px-12 font-sans bg-background '>
+
+       {/** Logo */}
+       <div className='shrink-0'>
+            <Image src={logo} alt="Logo" width={100} height={40} className='h-auto w-24 sm:w-28' />
+       </div>
+
+       {/** Desktop view */}
+       <div className='hidden lg:block flex-1'>
+            <ul className='flex items-center justify-between gap-2'>
+                {navItems.map((item,index)=>{return (
+                    <li key={item}>
+                        <Link href="#" className='whitespace-nowrap text-sm xl:text-base font-medium text-foreground hover:text-primary transition-colors'>{item}</Link>
+                    </li>
+                )})}
+            </ul>
+       </div>
+
+       {/** Right side: CTA + hamburger */}
+       <div className='items-center gap-3 hidden lg:flex'>
+            <Link href="#" className='hidden sm:flex items-center gap-2 whitespace-nowrap rounded-full bg-primary px-6 py-3 text-sm lg:text-base font-medium text-white hover:opacity-90 transition'>
+                Book a Free Trial <BookIcon />
+            </Link>
+       </div>
+            <div className='lg:hidden w-12 h-12 text-primary flex items-center justify-center cursor-pointer' onClick={()=>setIsOpen(prev=>!prev)}>
+                {isOpen? <FaX className='w-full h-full p-3'/> : <FaBars className='w-full h-full p-3'/>}
+            </div>
+        {/** mobile view  */}
+        <div className={`lg:hidden fixed top-20 bottom-0 z-40 flex flex-col w-full sm:w-80 md:w-96 transition-all duration-300 ease-in-out bg-primary/95 text-white backdrop-blur-xl shadow-2xl ${ isOpen ? "right-0": "-right-full"}`}>
+            <ul className='flex-1 overflow-y-auto'>
+                {navItems.map((item,index)=>{return (
+                    <li key={item} className='border-b border-white/20'>
+                        <Link href="#" className='block px-6 py-4 text-base font-medium hover:bg-white/10 hover:pl-8 transition-all duration-200'>{item}</Link>
+                    </li>
+                )})}
+            </ul>
+
+            <div className='p-6 border-t border-white/20 '>
+                <Link href="#" className='flex w-full items-center justify-center gap-2 rounded-full bg-white px-8 py-4 font-medium text-primary hover:bg-white/90 transition '>
+                    Book a Free Trial <BookIcon />
+                </Link>
+            </div>
+        </div>
+
+    </nav>
+  )
+}
+
+export default NavBar

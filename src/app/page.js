@@ -1,69 +1,84 @@
+import BookFreeTrialButton from "@/components/BookFreeTrialButton";
+import vector from "../../public/Frame 68.png"
 import Image from "next/image";
+import Link from "next/link";
+import HeroImage from "../../public/heroImage.png"
+import ParaGraph from "@/components/ParaGraph";
+import { FaGift, FaStar } from "react-icons/fa";
+import HeroIcons from "@/components/HeroIcons";
+
+// const heroIcons = [{ icons: <FaGift />, text: "Free Trial" }, { icons: <><FaStar /><FaStar /><FaStar /><FaStar /><FaStar /></>, text: "Google" }, { icons: <><FaStar /><FaStar /><FaStar /><FaStar /><FaStar /></>, text: "TrustPilot" }, { icons: "20+", text: "Years Experience" }, { icons: "1000+", text: "Happy Patients" }, { icons: "", text: "Independent Audiologists" }, { icons: "30-", text: "Day Free Trial" },]
+
+const heroIcons = [
+	{ icons: <FaGift />, text: "Free Trial" }, 
+	{ icons: <><FaStar /><FaStar /><FaStar /><FaStar /><FaStar /></>, text: "Google" }, 
+	{ icons: <><FaStar /><FaStar /><FaStar /><FaStar /><FaStar /></>, text: "TrustPilot" }, 
+	{ icons: "20+", text: "Years Experience" }, 
+	{ icons: "1000+", text: "Happy Patients" }, 
+	{ icons: "", text: "Independent Audiologists" }, 
+	{ icons: "30-", text: "Day Free Trial" },]
+
+const TeleIcon = () => {
+	return (<svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+		<path d="M3.62 7.79C5.06 10.62 7.38 12.94 10.21 14.38L12.41 12.18C12.69 11.9 13.08 11.82 13.43 11.93C14.55 12.3 15.75 12.5 17 12.5C17.2652 12.5 17.5196 12.6054 17.7071 12.7929C17.8946 12.9804 18 13.2348 18 13.5V17C18 17.2652 17.8946 17.5196 17.7071 17.7071C17.5196 17.8946 17.2652 18 17 18C12.4913 18 8.1673 16.2089 4.97918 13.0208C1.79107 9.8327 0 5.50868 0 1C0 0.734784 0.105357 0.48043 0.292893 0.292893C0.48043 0.105357 0.734784 0 1 0H4.5C4.76522 0 5.01957 0.105357 5.20711 0.292893C5.39464 0.48043 5.5 0.734784 5.5 1C5.5 2.25 5.7 3.45 6.07 4.57C6.18 4.92 6.1 5.31 5.82 5.59L3.62 7.79Z" fill="white" />
+	</svg>
+	)
+}
+const paraText = "Try any leading hearing aid free for one month, in your own home, with no pressure to buy. Our friendly Yorkshire team makes it simple, from your very first phone call."
 
 export default function Home() {
-  return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert h-5 w-[100px]"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the{" "}
-            <code className="rounded bg-black/[.06] px-1.5 py-0.5 font-mono text-[0.9em] dark:bg-white/[.08]">
-              page.js
-            </code>{" "}
-            file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert h-[14px] w-4"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
-  );
+	return (
+		<section className="relative w-full h-[90vh] bg-[#F2FAFF] overflow-auto">
+
+			<Image
+				src={vector}
+				alt="vector"
+				width={1058}
+				height={806}
+				className="absolute bottom-0 left-0 z-0 h-full object-cover pointer-events-none"
+			/>
+
+			{/* Centered content container */}
+			<div className="relative z-10 mx-auto h-full w-360 px-4 sm:px-8 lg:px-12 flex items-center gap-8">
+				<div className="flex flex-col gap-8 w-[50%]">
+					<p className="font-sans text-[18px] text-[#7B7B7B]">FREE, NO-OBLIGATION TRIAL</p>
+					<h1 className="font-fraunces font-bold text-primary text-[4rem] leading-tight tracking-tight">
+						<span className="block">Hear every</span>
+						<span className="block">conversation clearly</span>
+						<span className="block">again, right now</span>
+					</h1>
+					<ParaGraph text={paraText} />
+
+					<div className="flex gap-5 ">
+						<Link href="#" className='flex items-center gap-2 whitespace-nowrap rounded-full hover:bg-[#F2FAFF] px-6 py-3 text-[16px] font-semibold  hover:text-primary transition bg-primary text-[#F2FAFF] border-2 border-[primary]'>
+							<TeleIcon className="hover:text-primary hover:bg-primary " /> Call us: 01274 862623
+						</Link>
+						<BookFreeTrialButton
+							background="bg-[#F2FAFF]"
+							textColor="text-primary"
+							hoverBg="hover:bg-primary"
+							hoverText="hover:text-[#F2FAFF]"
+						/>
+					</div>
+				</div>
+				<div className="hidden lg:block relative h-full w-1/2 mt-5">
+					<Image
+						src={HeroImage}
+						alt="heroImage"
+						fill
+						priority
+						className="object-contain  object-right pointer-events-none"
+					/>
+				</div>
+			</div>
+			{/* <div className="absolute bottom-10 left-0 flex gap-3 z-10 overflow-auto font-sans text-[18px]">
+			{heroIcons.map((item)=>{return (<HeroIcons key={item.text} text={item.text} icons={item.icons}/>)})}
+	  </div> */}
+
+			<div className="absolute bottom-10 left-0 flex gap-3 z-10 font-sans text-[18px]">
+				{heroIcons.map((item) => { return (<HeroIcons key={item.text} text={item.text} icons={item.icons} />) })}
+			</div>
+
+		</section>
+	);
 }
