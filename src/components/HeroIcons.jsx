@@ -1,8 +1,11 @@
 import React from 'react'
 
-const HeroIcons = ({icons, text}) => {
+const HeroIcons = ({ icon, text }) => {
   return (
-    <div className='w-auto h-15 flex items-center rounded-xl font-semibold text-[20px] p-2 pl-8 pr-8 bg-[#FFFFFF] text-[#052F45B2] shadow-sm shadow-white/25'>{icons && icons} {" "} {text}</div>
+    <span className="flex h-15 shrink-0 items-center gap-2 whitespace-nowrap rounded-xl bg-white p-2 px-8 text-[20px] font-semibold text-[#052F45B2] shadow-sm shadow-white/25">
+      {icon}
+      {text}
+    </span>
   )
 }
 

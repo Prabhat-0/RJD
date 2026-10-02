@@ -5,16 +5,24 @@
   --foreground: #171717;
 }
 
+
+
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-primary: #0474BC;
   --color-navItems: #052F45;
   --color-secondary: #04293D;
+   --animate-marquee: marquee 25s linear infinite;
 
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+  }
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
   --font-fraunces: var(--font-fraunces-next);
+  --font-gelasio:var(--font-gelasio);
 }
 @media (prefers-color-scheme: dark) {
   :root {
@@ -22,6 +30,7 @@
     --foreground: #ededed;
   }
 }
+
 
 body {
   background: var(--background);

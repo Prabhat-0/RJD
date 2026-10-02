@@ -1,6 +1,6 @@
 import "./globals.css";
 import NavBar from "@/components/NavBar";
-import { Geist, Geist_Mono, Fraunces } from "next/font/google";
+import { Geist, Geist_Mono, Fraunces, Gelasio } from "next/font/google";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -16,6 +16,10 @@ const fraunces = Fraunces({
   variable: "--font-fraunces-next",
   subsets: ["latin"],
 });
+const gelasio=Gelasio({
+  variable:"--font-gelasio",
+  subsets:["latin"]
+})
 
 export const metadata = {
   title: "Create Next App",
@@ -26,7 +30,7 @@ export default function RootLayout({ children }) {
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} ${fraunces.variable} h-full antialiased`}
+      className={`${geistSans.variable} ${geistMono.variable} ${fraunces.variable} ${gelasio.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col w-full bg-background items-center justify-center">
         <NavBar />
