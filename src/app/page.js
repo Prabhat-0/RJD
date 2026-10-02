@@ -15,30 +15,40 @@ import ReasonCard from "@/components/ReasonCard";
 import JourneyFrame from "../../public/journeyFrame.png"
 import JourneyImage from "../../public/journeyImage.png"
 import FeaturedServices from "../../public/featuredServices.png"
+import HearingAids from "../../public/hearingAids.png"
+import EarWaxRemoval from "../../public/earWaxRemoval.svg";
+import HearingTest from "../../public/hearingTests.svg";
+import TittinusSupport from "../../public/tittinusSupport.svg"
+import EarProtection from "../../public/earProtection.svg"
+
+const journeyCardDetail = [{ imgSrc: EarWaxRemoval, headerText: "Ear Wax Removal", headerTextColor: "text-white", paraText: "Gentle micro-suction, quick and comfortable.", paraTextColor: "text-white", bg: "bg-[#4373B6]" },
+{ imgSrc: HearingTest, headerText: "Hearing Tests", headerTextColor: " text-[#052F45]", paraText: " Thorough, unhurried, explained simply.", paraTextColor: "text-[#0A1E2B] ", bg: "bg-[#F1F8FC]" },
+{ imgSrc: TittinusSupport, headerText: "Tinnitus Support", headerTextColor: " text-white", paraText: " A calmer approach to ringing or buzzing.", paraTextColor: " text-white", bg: "bg-[#64B0E2]" },
+{ imgSrc: EarProtection, headerText: "Ear Protection", headerTextColor: " text-[#052F45]", paraText: " Moulded plugs for music, work and sleep.", paraTextColor: " text-[#0A1E2B]", bg: "bg-[#F1F8FC]" }];
 
 const journeySteps = [
-  {
-    title: "Hearing Assessment",
-    text: "A thorough, professional hearing evaluation, explained clearly and without jargon, so you always know exactly where you stand.",
-  },
-  {
-    title: "Free Hearing Aid Trial",
-    text: "Take your hearing aids home for thirty days. Experience real conversations, real rooms and real life before deciding anything.",
-  },
-  {
-    title: "Ongoing Care",
-    text: "Fine tuning, remote support and annual reviews. We stay with you for the long run, not just the first fitting.",
-  },
+	{
+		title: "Hearing Assessment",
+		text: "A thorough, professional hearing evaluation, explained clearly and without jargon, so you always know exactly where you stand.",
+	},
+	{
+		title: "Free Hearing Aid Trial",
+		text: "Take your hearing aids home for thirty days. Experience real conversations, real rooms and real life before deciding anything.",
+	},
+	{
+		title: "Ongoing Care",
+		text: "Fine tuning, remote support and annual reviews. We stay with you for the long run, not just the first fitting.",
+	},
 ];
 
 
-const reasonCardItems=[
-	{element:<IndependentAdvice/>,headerText:"Independent Advice",paraText:"Not tied to one manufacturer, so our recommendations are about what suits you, never sales targets."},
-	{element: <HomeVisit/>,headerText:"Home Visit",paraText:"Can't get to a clinic easily? We'll bring the appointment to your own front room instead."},
-	{element: <RemoteCare/>,headerText:"Remote Care",paraText:"Small adjustments can often be made remotely, so you're not always travelling in for minor tweaks."},
-	{element: <MusicianSpecialist/>,headerText:"Musician Specialist",paraText:"Small adjustments can often be made remotely, so you're not always travelling in for minor tweaks."},
-	{element: <HolisticHearingMethod/>,headerText:"Holistic Hearing Method",paraText:"We look at your whole lifestyle, not just a test result, to find the right long-term fit."},
-	{element: <LifeTimeSupport/>,headerText:"Life Time Support",paraText:"Ongoing reviews, adjustments and honest advice for as long as you're with us."}
+const reasonCardItems = [
+	{ element: <IndependentAdvice />, headerText: "Independent Advice", paraText: "Not tied to one manufacturer, so our recommendations are about what suits you, never sales targets." },
+	{ element: <HomeVisit />, headerText: "Home Visit", paraText: "Can't get to a clinic easily? We'll bring the appointment to your own front room instead." },
+	{ element: <RemoteCare />, headerText: "Remote Care", paraText: "Small adjustments can often be made remotely, so you're not always travelling in for minor tweaks." },
+	{ element: <MusicianSpecialist />, headerText: "Musician Specialist", paraText: "Small adjustments can often be made remotely, so you're not always travelling in for minor tweaks." },
+	{ element: <HolisticHearingMethod />, headerText: "Holistic Hearing Method", paraText: "We look at your whole lifestyle, not just a test result, to find the right long-term fit." },
+	{ element: <LifeTimeSupport />, headerText: "Life Time Support", paraText: "Ongoing reviews, adjustments and honest advice for as long as you're with us." }
 ]
 
 const Stars = ({ color }) => (
@@ -113,7 +123,7 @@ export default function Home() {
 								textColor="text-primary"
 								hoverBg="hover:bg-primary"
 								hoverText="hover:text-[#F2FAFF]"
-								
+
 							/>
 						</div>
 					</div>
@@ -150,107 +160,161 @@ export default function Home() {
 				</div>
 			</main>
 
-						{/**Trusted Across cards  */}
+			{/**Trusted Across cards  */}
 
 			<section className="grid h-auto w-full place-items-center">
 				<div className="flex w-full max-w-360 flex-col items-center justify-center pt-20 pb-20 gap-10">
 					<div className="flex flex-col gap-3 items-center justify-center text-center">
 						<HeaderPara text="Trusted Across Yorkshire" />
-						<MainHeader text={"Why choose RJD Hearing Care"} />	
+						<MainHeader text={"Why choose RJD Hearing Care"} />
 						<ParaGraph textSize="text-[20px]" text={"Six reasons patients across Yorkshire trust us with their hearing, year after year."} />
 					</div>
 					<div className="grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-2 xl:grid-cols-3">
 						{reasonCardItems.map((item) => (
 							<ReasonCard key={item.headerText} element={item.element} headerText={item.headerText} paraText={item.paraText} />
 						))}
-						</div>
+					</div>
 					<BookFreeTrialButton />
 				</div>
 			</section>
 			<section className="relative w-full overflow-hidden bg-[#F2FAFF] py-16 lg:py-20">
 
-			{/* Background vector: 40% of screen width, pinned bottom-right */}
-			<div className="pointer-events-none absolute inset-0 z-0">
-				<Image
-				src={JourneyFrame}
-				alt=""
-				width={1058}
-				height={806}
-				quality={90}
-				className="absolute bottom-0 right-0 h-auto md:h-full lg:h-[806px] w-[70vw] max-w-none object-contain object-bottom-right "
-				/>
-			</div>
-
-			{/* Content */}
-			<div className="relative z-10 mx-auto w-full max-w-360 px-4 sm:px-8 lg:px-12">
-
-				{/* Heading */}
-				<div className="mb-12 flex flex-col items-center justify-center gap-4 text-center lg:mb-16">
-				<HeaderPara text="YOUR JOURNEY" />
-				<MainHeader text="How We Help You" />
-				</div>
-
-				<div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-[2fr_3fr] lg:gap-16">
-
-			{/* Left: image */}
-			<div className="w-full hidden lg:block">
-				<Image
-				src={JourneyImage}
-				alt="Journey Image"
-				width={630}
-				height={806}
-				quality={90}
-				className="mx-auto h-auto w-full max-w-xs sm:max-w-sm lg:max-w-md"
-				/>
-			</div>
-
-				{/* Right: timeline */}
-				<div className="flex w-full flex-col gap-10">
-					<ol>
-					{journeySteps.map((step, index) => (
-						<li key={step.title} className="relative pb-10 pl-20 last:pb-0 sm:pl-24">
-
-						{/* Number circle */}
-						<div className="absolute left-0 top-0 z-10 grid size-15 place-items-center rounded-full bg-primary text-xl font-semibold text-white">
-							{index + 1}
-						</div>
-
-						{/* Line to the next circle: never on the last step */}
-						<div className="absolute left-7.5 top-15 bottom-0 w-px -translate-x-1/2 bg-primary last:hidden" />
-
-						<MainHeader text={step.title} textColor="text-primary" textSize="text-2xl lg:text-[28px]" />
-						<ParaGraph text={step.text} textSize="text-base lg:text-[18px]" />
-						</li>
-					))}
-					</ol>
-
-        		<div className="w-full grid place-items-center">
-					<BookFreeTrialButton
-            			background="bg-primary"
-           		 		textColor="text-[#F2FAFF]"
-            			hoverBg="hover:bg-[#F2FAFF]"
-            			hoverText="hover:text-primary"
-          			/>
-				</div>
-				</div>
-				</div>
-			</div>
-			</section>
-			{/**featured Secition */}
-			<section className="relative w-full overflow-hidden py-16 lg:py-20 h-auto md:h-full lg:h-[806px]">
-
 				{/* Background vector: 40% of screen width, pinned bottom-right */}
-				<div className="pointer-events-none absolute inset-0 z-0 ">
+				<div className="pointer-events-none absolute inset-0 z-0">
 					<Image
-					src={FeaturedServices}
-					alt="Featured Services"
-					width={1440}
-					height={806}
-					quality={90}
-					className="absolute bottom-0 right-0 h-auto md:h-full lg:h-[806px] w-full max-w-none object-contain object-bottom-right "
+						src={JourneyFrame}
+						alt=""
+						width={1058}
+						height={806}
+						quality={90}
+						className="absolute bottom-0 right-0 h-auto md:h-full lg:h-[806px] w-[70vw] max-w-none object-contain object-bottom-right "
 					/>
 				</div>
 
+				{/* Content */}
+				<div className="relative z-10 mx-auto w-full max-w-360 px-4 sm:px-8 lg:px-12">
+
+					{/* Heading */}
+					<div className="mb-12 flex flex-col items-center justify-center gap-4 text-center lg:mb-16">
+						<HeaderPara text="YOUR JOURNEY" />
+						<MainHeader text="How We Help You" />
+					</div>
+
+					<div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-[2fr_3fr] lg:gap-16">
+
+						{/* Left: image */}
+						<div className="w-full hidden lg:block">
+							<Image
+								src={JourneyImage}
+								alt="Journey Image"
+								width={630}
+								height={806}
+								quality={90}
+								className="mx-auto h-auto w-full max-w-xs sm:max-w-sm lg:max-w-md"
+							/>
+						</div>
+
+						{/* Right: timeline */}
+						<div className="flex w-full flex-col gap-10">
+							<ol>
+								{journeySteps.map((step, index) => (
+									<li key={step.title} className="relative pb-10 pl-20 last:pb-0 sm:pl-24">
+
+										{/* Number circle */}
+										<div className="absolute left-0 top-0 z-10 grid size-15 place-items-center rounded-full bg-primary text-xl font-semibold text-white">
+											{index + 1}
+										</div>
+
+										{/* Line to the next circle: never on the last step */}
+										<div className="absolute left-7.5 top-15 bottom-0 w-px -translate-x-1/2 bg-primary last:hidden" />
+
+										<MainHeader text={step.title} textColor="text-primary" textSize="text-2xl lg:text-[28px]" />
+										<ParaGraph text={step.text} textSize="text-base lg:text-[18px]" />
+									</li>
+								))}
+							</ol>
+
+							<div className="w-full grid place-items-center">
+								<BookFreeTrialButton
+									background="bg-primary"
+									textColor="text-[#F2FAFF]"
+									hoverBg="hover:bg-[#F2FAFF]"
+									hoverText="hover:text-primary"
+								/>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+			{/** Featured Section: paste this inside your page's JSX, where the old section was */}
+			<section className="relative w-full overflow-hidden py-16 lg:py-20">
+
+				{/* Background image: pinned bottom-right, full width */}
+				<div className="pointer-events-none absolute inset-0 z-0">
+					<Image
+						src={FeaturedServices}
+						alt=""
+						width={1440}
+						height={806}
+						quality={90}
+						className="absolute bottom-0 right-0 h-auto w-full max-w-none object-contain object-right-bottom"
+					/>
+				</div>
+
+				{/* Header row: label + heading on the left, button at the end */}
+				<div className="relative z-10 mx-auto mb-10 flex w-full max-w-360 flex-col gap-6 px-4 sm:px-8 md:mb-12 md:flex-row md:items-end md:justify-between lg:mb-16 lg:px-12">
+
+					<div className="flex flex-col items-start gap-4">
+						<div className="flex items-center gap-5">
+							<div className="h-0.5 w-13 bg-[#03B2E7]" />
+							<HeaderPara text="Featured Services" textColor="text-[#03B2E7]" />
+						</div>
+						<MainHeader text="Everything your ears need" />
+					</div>
+
+					<div className="w-fit shrink-0">
+						<BookFreeTrialButton
+							background="bg-primary"
+							textColor="text-[#F2FAFF]"
+							hoverBg="hover:bg-[#F2FAFF]"
+							hoverText="hover:text-primary"
+						/>
+					</div>
+				</div>
+
+				{/* Cards grid */}
+				<div className="relative z-10 mx-auto grid w-full max-w-360 grid-cols-1 gap-6 px-4 sm:grid-cols-2 sm:px-8 lg:grid-cols-4 lg:grid-rows-2 lg:px-12">
+
+					{/* Big card: image fills the card, gradient fades black 80% (bottom) to 0% (top) */}
+					<div className="relative min-h-80 overflow-hidden rounded-2xl sm:col-span-2 lg:row-span-2">
+						<Image
+							src={HearingAids}
+							alt="Hearing Aids"
+							width={670}
+							height={500}
+							quality={90}
+							className="absolute inset-0 z-0 h-full w-full object-cover"
+						/>
+						<div className="absolute inset-x-0 bottom-0 z-20 bg-linear-to-t from-black/80 to-transparent px-6 pb-5 pt-24 sm:px-10">
+							<MainHeader text="Hearing Aids" textSize="text-3xl lg:text-[38px]" textColor="text-white" />
+							<ParaGraph text="Every major brand, fitted and tuned by qualified audiologists." textColor="text-white" />
+						</div>
+					</div>
+
+					{/* Small cards */}
+					{journeyCardDetail.map((item) => (
+						<div
+							key={item.headerText}
+							className={`${item.bg} flex h-full w-full flex-col gap-4 overflow-hidden rounded-2xl p-5`}
+						>
+							<div className="size-12 shrink-0">
+								<Image src={item.imgSrc} width={60} height={60} alt={item.headerText} className="object-cover" />
+							</div>
+							<MainHeader text={item.headerText} textColor={item.headerTextColor} textSize="text-2xl lg:text-[28px]" />
+							<ParaGraph text={item.paraText} textColor={item.paraTextColor} />
+						</div>
+					))}
+				</div>
 			</section>
 
 		</>
