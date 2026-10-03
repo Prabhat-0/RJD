@@ -1,3 +1,4 @@
+import Footer from "@/components/Footer";
 import "./globals.css";
 import NavBar from "@/components/NavBar";
 import { Geist, Geist_Mono, Fraunces, Gelasio } from "next/font/google";
@@ -35,6 +36,7 @@ export default function RootLayout({ children }) {
       <body className="min-h-full flex flex-col w-full bg-background items-center justify-center">
         <NavBar />
         {children}
+        <Footer/>
       </body>
     </html>
   );

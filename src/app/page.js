@@ -32,6 +32,16 @@ import Phonak from "../../public/Phonak.png";
 import Widex from "../../public/Widex.png";
 import HomeVisitJpg from "../../public/HomeVisit.jpg";
 import TeamsImage from "../../public/teamsImage.png"
+import DoubleQuote from "../../public/DoubleQuote.png";
+
+
+const testimonial = {
+	name: "Gregg Steveson",
+	role: "Foulride",
+	text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.",
+};
+const CARD_COUNT = 5;
+
 const hearingCards = [{ src: Oticon, header: "Oticon", para: "Designed to let the brain process sound the way it naturally would.", heading: "Best for Natural Sound" },
 { src: Phonak, header: "Phonak", para: "Exceptional at picking out speech in noisy, busy environments.", heading: "Best for Speech Clarity" },
 { src: Widex, header: "Widex", para: "Rich, detailed sound quality favoured by musicians and music lovers.", heading: "Best Music Experience" }
@@ -503,7 +513,7 @@ export default function Home() {
 
 			</section>
 
-			<section id="HomeVisits" className="grid w-full grid-cols-1 lg:min-h-181.75 lg:grid-cols-2">
+			<section id="TeamsVisit" className="grid w-full grid-cols-1 lg:min-h-181.75 lg:grid-cols-2">
 
 				{/* Left: image fills its half (desktop only) */}
 				<div className="relative hidden lg:block">
@@ -535,16 +545,60 @@ export default function Home() {
 							Book Your Assessment
 						</Link>
 						<Link
-								href="#"
-								className="flex items-center gap-2 whitespace-nowrap rounded-full border-2 border-primary bg-primary px-6 py-3 text-[16px] font-semibold text-[#F2FAFF] transition hover:bg-primary/80"
-							>
-								<TeleIcon />{`${"  "} ${"01274 862623"}`}  
-							</Link>
+							href="#"
+							className="flex items-center gap-2 whitespace-nowrap rounded-full border-2 border-primary bg-primary px-6 py-3 text-[16px] font-semibold text-[#F2FAFF] transition hover:bg-primary/80"
+						>
+							<TeleIcon />{`${"  "} ${"01274 862623"}`}
+						</Link>
 					</div>
 
 				</div>
 
 			</section>
+
+
+			<section id="testimonials" className="w-full overflow-hidden py-16 lg:min-h-150 lg:py-20">
+
+				<div className="mx-auto flex w-full max-w-360 flex-col items-center gap-10 px-4 text-center sm:px-8 lg:gap-14 lg:px-12">
+					<MainHeader text="Testimonials" />
+				</div>
+
+				{/* Marquee window: full width, */}
+				<div className="mt-10 w-full overflow-hidden mask-[linear-gradient(to_right,transparent,black_6%,black_94%,transparent)] lg:mt-14">
+
+					<div className="flex w-max animate-marquee [animation-duration:45s] hover:[animation-play-state:paused] motion-reduce:animate-none">
+						{[0, 1].map((copy) => (
+							<div key={copy} className="flex shrink-0 gap-6 pr-6" aria-hidden={copy === 1}>
+								{Array.from({ length: CARD_COUNT }).map((_, i) => (
+									<div
+										key={`${copy}-${i}`}
+										className="relative flex w-72 shrink-0 flex-col gap-4 overflow-hidden rounded-2xl border border-[#B7B9B9]/50 bg-white p-6 text-left shadow-sm sm:w-80 lg:w-96"
+									>
+										<Image
+											src={DoubleQuote}
+											alt=""
+											width={105}
+											height={91}
+											className="pointer-events-none absolute left-4 top-4 z-0 h-auto  opacity-40"
+										/>
+
+										<div className="relative z-10 flex flex-col gap-4 pt-12">
+											<ParaGraph text={testimonial.text} textColor="text-[#454545]" textSize="text-sm lg:text-base" />
+											<div className="flex flex-col">
+												<p className="text-lg font-semibold text-primary">{testimonial.name}</p>
+												<p className="text-sm text-[#7B7B7B]">{testimonial.role}</p>
+											</div>
+										</div>
+									</div>
+								))}
+							</div>
+						))}
+					</div>
+				</div>
+
+			</section>
+
+
 		</>
 	);
 }
