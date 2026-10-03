@@ -8,7 +8,7 @@ import HeroIcons from "@/components/HeroIcons";
 import HeaderPara from "@/components/HeaderPara";
 import { HolisticHearingMethod, HomeVisit, IndependentAdvice, LifeTimeSupport, MusicianSpecialist, RemoteCare, WhatsAppIcon } from "@/svg";
 
-import { FaGift, FaStar, FaAward, FaUsers, FaCalendarCheck } from "react-icons/fa";
+import { FaGift, FaStar, FaAward, FaUsers, FaCalendarCheck, FaArrowRight, FaCheck } from "react-icons/fa";
 import { FaEarListen } from "react-icons/fa6";
 import MainHeader from "@/components/MainHeader";
 import ReasonCard from "@/components/ReasonCard";
@@ -20,6 +20,31 @@ import EarWaxRemoval from "../../public/earWaxRemoval.svg";
 import HearingTest from "../../public/hearingTests.svg";
 import TittinusSupport from "../../public/tittinusSupport.svg"
 import EarProtection from "../../public/earProtection.svg"
+import BookSvg from "../../public/book.svg";
+import AdjustementSvg from "../../public/adjustement.svg";
+import AssessmentSvg from "../../public/assessment.svg";
+import FreeTrial from "../../public/freeTrial.svg";
+import LifeTimeCare from "../../public/lifetimeCare.svg";
+import PerfectFit from "../../public/perfectFit.svg";
+import ServicesBg from "../../public/servicesBg.png"
+import Oticon from "../../public/Oticon.png";
+import Phonak from "../../public/Phonak.png";
+import Widex from "../../public/Widex.png";
+import HomeVisitJpg from "../../public/HomeVisit.jpg";
+import TeamsImage from "../../public/teamsImage.png"
+const hearingCards = [{ src: Oticon, header: "Oticon", para: "Designed to let the brain process sound the way it naturally would.", heading: "Best for Natural Sound" },
+{ src: Phonak, header: "Phonak", para: "Exceptional at picking out speech in noisy, busy environments.", heading: "Best for Speech Clarity" },
+{ src: Widex, header: "Widex", para: "Rich, detailed sound quality favoured by musicians and music lovers.", heading: "Best Music Experience" }
+]
+
+const steps = [
+	{ src: BookSvg, title: "Book", text: "A simple call or online form to get started, whenever suits you." },
+	{ src: AssessmentSvg, title: "Assessment", text: "A relaxed, thorough hearing evaluation with no rush." },
+	{ src: FreeTrial, title: "Free Trial", text: "Thirty days living with your hearing aids in real life." },
+	{ src: AdjustementSvg, title: "Adjustements", text: "Fine tuning based on how the trial actually felt." },
+	{ src: PerfectFit, title: "Perfect Fit", text: "Hearing aids that suit your ears and your life." },
+	{ src: LifeTimeCare, title: "LifeTime Care", text: "Reviews, support and honest advice for years to come." },
+];
 
 const journeyCardDetail = [{ imgSrc: EarWaxRemoval, headerText: "Ear Wax Removal", headerTextColor: "text-white", paraText: "Gentle micro-suction, quick and comfortable.", paraTextColor: "text-white", bg: "bg-[#4373B6]" },
 { imgSrc: HearingTest, headerText: "Hearing Tests", headerTextColor: " text-[#052F45]", paraText: " Thorough, unhurried, explained simply.", paraTextColor: "text-[#0A1E2B] ", bg: "bg-[#F1F8FC]" },
@@ -134,6 +159,7 @@ export default function Home() {
 							src={HeroImage}
 							alt="Hearing specialist helping a patient"
 							fill
+							sizes={"100vw"}
 							priority
 							quality={90}
 							className="pointer-events-none object-contain object-right-bottom"
@@ -177,6 +203,7 @@ export default function Home() {
 					<BookFreeTrialButton />
 				</div>
 			</section>
+
 			<section className="relative w-full overflow-hidden bg-[#F2FAFF] py-16 lg:py-20">
 
 				{/* Background vector: 40% of screen width, pinned bottom-right */}
@@ -317,6 +344,207 @@ export default function Home() {
 				</div>
 			</section>
 
+
+			{/**Services Section  */}
+			<section className="relative w-full overflow-hidden bg-linear-[118.47deg,#0E4461_0%,#04293D_100%]" id="Services">
+				{/* Background image */}
+				<Image
+					src={ServicesBg}
+					alt=""
+					width={1920}
+					height={744}
+					quality={90}
+					sizes="100vw"
+					className="pointer-events-none absolute bottom-0 right-0 z-0 h-auto w-full"
+				/>
+
+				<div className="relative z-10 mx-auto flex w-full max-w-360 flex-col items-center gap-12 px-4 py-16 text-center sm:px-8 lg:gap-16 lg:px-12 lg:py-25">
+
+					<div className="flex w-full flex-col items-center justify-center gap-5">
+						<HeaderPara text="Featured Services" textColor="text-primary" />
+						<MainHeader text="Why patients stay with us for years" textColor="text-white" />
+						<ParaGraph text="A clear, unhurried path from first phone call to lifelong hearing care." textColor="text-white" />
+					</div>
+
+					{/* Timeline */}
+					<ol className="w-full text-left">
+						{steps.map((step, index) => {
+
+							const isLeft = index % 2 === 1;
+							return (
+								<li key={step.title} className="relative min-h-20 pb-12 pl-28 last:pb-0 lg:grid lg:grid-cols-2 lg:pl-0">
+
+									<div className="absolute left-0 top-0 z-10 grid size-20 place-items-center rounded-full bg-white lg:left-1/2 lg:-translate-x-1/2">
+										<Image src={step.src} alt="" width={35} height={26} />
+									</div>
+
+									{index < steps.length - 1 && (
+										<div className="absolute left-10 top-20 -bottom-34 w-px -translate-x-1/2 bg-white/30 lg:left-1/2" />
+									)}
+
+									<div className={`flex flex-col gap-3 ${isLeft ? "lg:col-start-1 lg:items-end lg:pr-20 lg:text-right" : "lg:col-start-2 lg:pl-20"}`}>
+										<MainHeader text={`${index + 1}. ${step.title}`} textColor="text-white" textSize="text-[32px]" />
+										<ParaGraph text={step.text} textColor="text-white/80" textSize="text-[20px]" />
+									</div>
+								</li>
+							);
+						})}
+					</ol>
+
+					<div className="w-fit">
+						<BookFreeTrialButton
+							text="Start Your Journey"
+							background="bg-white"
+							textColor="text-[#063047]"
+							hoverBg="hover:bg-primary"
+							border="border-none"
+							hoverText="hover:text-white"
+						/>
+					</div>
+				</div>
+			</section>
+
+			{/**Best hearing aids section */}
+			<section className="relative w-full overflow-hidden lg:flex lg:min-h-150 lg:items-center" id="HearingAids">
+
+				<div className="relative z-10 mx-auto flex w-full max-w-360 flex-col items-center gap-8 px-4 py-12 text-center sm:px-8 lg:gap-10 lg:px-12 lg:py-10">
+
+					{/* Heading */}
+					<div className="flex w-full flex-col items-center justify-center gap-3 lg:gap-4">
+						<MainHeader text="Best hearing aids" />
+						<ParaGraph text="Our most recommended brands, chosen for what each does best." />
+					</div>
+
+					{/* Cards */}
+					<div className="grid h-auto w-full grid-cols-1 gap-8 md:grid-cols-3 md:gap-0">
+						{hearingCards.map((item, index) => (
+							<div
+								key={item.header}
+								className="relative flex h-full w-full flex-col items-center justify-center gap-5 p-4 md:p-5 lg:gap-6 lg:p-8"
+							>
+								{/* Shorter divider: 60% of the card height, centered, hidden after the last card and on phones */}
+								{index < hearingCards.length - 1 && (
+									<div className="absolute right-0 top-1/2 hidden h-3/5 w-px -translate-y-1/2 bg-[#B7B9B9] md:block" />
+								)}
+
+								{/* Image: scales with the card, never overflows */}
+								<div className="flex h-28 w-full items-center justify-center md:h-32 lg:h-36">
+									<Image
+										src={item.src}
+										alt={item.header}
+										width={310}
+										height={190}
+										className="h-full w-auto max-w-full object-contain"
+									/>
+								</div>
+
+								<div className="flex flex-col items-center justify-center gap-3">
+									<MainHeader text={item.header} textColor="text-[#052F45]" textSize="text-2xl lg:text-[28px]" />
+
+									<p className="text-base font-bold text-[#1E1E1E] lg:text-lg">{item.heading}</p>
+
+									<ParaGraph text={item.para} textColor="text-[#454545]" textSize="text-sm lg:text-base" />
+
+									{/* One line at every width */}
+									<Link
+										href="#"
+										className="inline-flex items-center gap-2 whitespace-nowrap text-primary underline"
+									>
+										Learn more <FaArrowRight className="shrink-0" />
+									</Link>
+								</div>
+							</div>
+						))}
+					</div>
+				</div>
+
+			</section>
+
+			{/**Home Visits  */}
+			<section id="HomeVisits" className="grid w-full grid-cols-1 lg:min-h-181.75 lg:grid-cols-2">
+
+				{/* Left: image fills its half (desktop only) */}
+				<div className="relative hidden lg:block">
+					<Image
+						src={HomeVisitJpg}
+						alt="Audiologist on a home visit"
+						fill
+						quality={90}
+						sizes="50vw"
+						className="object-cover"
+					/>
+				</div>
+
+				{/* Right: text, vertically centered */}
+				<div className="flex flex-col items-start justify-center gap-4 bg-linear-[118.47deg,#0E4461_0%,#04293D_100%] px-4 py-12 sm:px-8 sm:py-16 lg:gap-5 lg:p-14 xl:p-20 xl:pr-32">
+
+					<div className="flex items-center gap-5">
+						<div className="h-0.5 w-13 bg-[#03B2E7]" />
+						<HeaderPara text="HOME VISITS" textColor="text-[#03B2E7]" />
+					</div>
+
+					<MainHeader text="Can't visit us? We'll come to you." textColor="text-white" />
+
+					<ParaGraph
+						text="Many of our patients prefer the comfort of their own home. So if that suits you better, we'll simply bring the appointment to your front room."
+						textColor="text-white/80"
+					/>
+
+					{/* Checklist: icon + text always on one line, items wrap as whole units */}
+					<ul className="flex flex-col gap-3 font-sans text-base text-white/80 lg:text-xl">
+						{["Comfortable", "Family can join", "Same expert every time"].map((label) => (
+							<li key={label} className="flex items-center gap-2">
+								<FaCheck className="shrink-0" />
+								{label}
+							</li>
+						))}
+					</ul>
+				</div>
+
+			</section>
+
+			<section id="HomeVisits" className="grid w-full grid-cols-1 lg:min-h-181.75 lg:grid-cols-2">
+
+				{/* Left: image fills its half (desktop only) */}
+				<div className="relative hidden lg:block">
+					<Image
+						src={TeamsImage}
+						alt="speak to team"
+						fill
+						quality={90}
+						sizes="50vw"
+						className="object-cover"
+					/>
+				</div>
+
+				{/* Right: text, vertically centered */}
+				<div className="flex flex-col items-start justify-center gap-4 bg-primary px-4 py-12 sm:px-8 sm:py-16 lg:gap-5 lg:p-14 xl:p-20 xl:pr-32">
+
+					<MainHeader text=" Speak to our team directly" textColor="text-white" textSize="text-[66px]" />
+
+					<ParaGraph
+						text="Book your free, no-obligation hearing assessment today and take the first step back to easy conversation."
+						textColor="text-white/80" textSize="text-[26px]"
+					/>
+
+					<div className="flex flex-col justify-between gap-10">
+						<Link
+							href="#"
+							className={`h-auto w-auto flex items-center gap-2 whitespace-nowrap rounded-2xl border border-primary px-4 py-3 text-[16px] font-semibold transition bg-white text-primary hover:bg-white/90`}
+						>
+							Book Your Assessment
+						</Link>
+						<Link
+								href="#"
+								className="flex items-center gap-2 whitespace-nowrap rounded-full border-2 border-primary bg-primary px-6 py-3 text-[16px] font-semibold text-[#F2FAFF] transition hover:bg-primary/80"
+							>
+								<TeleIcon />{`${"  "} ${"01274 862623"}`}  
+							</Link>
+					</div>
+
+				</div>
+
+			</section>
 		</>
 	);
 }
