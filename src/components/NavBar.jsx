@@ -1,12 +1,11 @@
 "use client"
 import Image from 'next/image'
-import React from 'react'
-import logo from "../../public/logo.png"
+import React, { useEffect, useState } from 'react'
+import logo from "../../public/_.png"
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { FaBars } from 'react-icons/fa';
 import { FaX } from 'react-icons/fa6';
-import { useState } from 'react';
 import { BookIcon } from '@/svg';
 
 const navItems = [
@@ -28,30 +27,41 @@ const NavBar = () => {
     // Home needs an exact match, others match their section (e.g. /shop/item)
     const isActive = (href) => href === "/" ? pathname === "/" : pathname.startsWith(href);
 
-    return (
-        // Outer nav: full width, sticky, holds the background
-        <nav className='sticky top-0 z-50 w-full h-26 bg-background font-sans shadow-sm'>
+    // Lock page scroll while the mobile menu is open, close it on Escape
+    useEffect(() => {
+        document.body.style.overflow = isOpen ? "hidden" : "";
+        const onKey = (e) => e.key === "Escape" && setIsOpen(false);
+        window.addEventListener("keydown", onKey);
+        return () => {
+            document.body.style.overflow = "";
+            window.removeEventListener("keydown", onKey);
+        };
+    }, [isOpen]);
 
-            {/* Inner container: centered, max 1440px */}
-            <div className='mx-auto flex h-full w-full max-w-360 items-center justify-between gap-4 px-4 sm:px-8 lg:px-12 xl:gap-8'>
+    return (
+        <nav className='fixed top-0 z-50 h-20 w-full bg-background font-sans md:h-27.5'>
+
+            {/* Inner container: centered, max 1440px, padded on every screen size */}
+            <div className='mx-auto flex h-full w-full max-w-360 items-center justify-between gap-5 px-4 sm:px-8 min-[1400px]:gap-7.5'>
 
                 {/** Logo */}
-                <div className='shrink-0'>
-                    <Image src={logo} alt="Logo" width={100} height={40} className='h-auto w-24 sm:w-28' />
-                </div>
+                <Link href="/" className='h-17.5 w-28.5 shrink-0' aria-label="Home">
+                    <Image src={logo} alt="Logo" width={114} height={70} quality={90} priority className='h-auto w-28.5 object-cover' />
+                </Link>
 
-                {/** Desktop view */}
-                <div className='hidden flex-1 lg:block'>
-                    <ul className='flex items-center justify-between gap-2'>
+                {/** Desktop view: 18px from 1400px, 16px between 1280 and 1399px so all links fit */}
+                <div className='hidden flex-1 xl:block'>
+                    <ul className='flex items-center justify-around gap-4 min-[1400px]:gap-5'>
                         {navItems.map((item) => {
                             const active = isActive(item.href);
                             return (
                                 <li key={item.href}>
                                     <Link
                                         href={item.href}
-                                        className={`flex items-center gap-2 whitespace-nowrap text-sm font-medium transition-colors hover:text-primary xl:text-base ${active ? "text-primary" : "text-foreground"}`}
+                                        aria-current={active ? "page" : undefined}
+                                        className={`flex items-center gap-2 whitespace-nowrap font-sans text-base font-medium transition-colors hover:text-primary min-[1400px]:text-lg ${active ? "text-primary opacity-100" : "text-foreground opacity-70"}`}
                                     >
-                                        {active && <span className="size-1.5 shrink-0 rounded-full bg-primary" />}
+                                        {active && <span className="size-2.5 shrink-0 rounded-full bg-primary" />}
                                         {item.label}
                                     </Link>
                                 </li>
@@ -61,24 +71,33 @@ const NavBar = () => {
                 </div>
 
                 {/** Desktop CTA */}
-                <div className='hidden shrink-0 items-center gap-3 lg:flex'>
-                    <Link href="#" className='flex items-center gap-2 whitespace-nowrap rounded-full bg-primary px-6 py-3 text-sm font-medium text-white transition hover:opacity-90 lg:text-base'>
+                <div className='hidden shrink-0 items-center xl:flex'>
+                    <Link href="#" className='flex items-center gap-3 whitespace-nowrap rounded-full bg-primary px-5 py-3 text-[18px] font-medium text-white transition hover:opacity-90 min-[1400px]:gap-5 min-[1400px]:px-6 min-[1400px]:py-4'>
                         Book a Free Trial <BookIcon />
                     </Link>
                 </div>
 
-                {/** Hamburger (mobile and tablet only) */}
-                <div
-                    className='flex h-12 w-12 shrink-0 cursor-pointer items-center justify-center text-primary lg:hidden'
+                {/** Hamburger (below xl) */}
+                <button
+                    type="button"
+                    aria-label={isOpen ? "Close menu" : "Open menu"}
+                    aria-expanded={isOpen}
+                    className='flex size-12 shrink-0 cursor-pointer items-center justify-center text-primary xl:hidden'
                     onClick={() => setIsOpen(prev => !prev)}
                 >
-                    {isOpen ? <FaX className='h-full w-full p-3' /> : <FaBars className='h-full w-full p-3' />}
-                </div>
+                    {isOpen ? <FaX className='size-6' /> : <FaBars className='size-6' />}
+                </button>
             </div>
 
-            {/** Mobile view: top-26 matches the navbar height */}
+            {/** Backdrop: tap outside the menu to close */}
             <div
-                className={`fixed top-26 right-0 bottom-0 z-40 flex w-full flex-col bg-primary/95 text-white shadow-2xl backdrop-blur-xl transition-transform duration-300 ease-in-out sm:w-80 md:w-96 lg:hidden ${isOpen ? "translate-x-0" : "translate-x-full"}`}
+                onClick={() => setIsOpen(false)}
+                className={`fixed inset-x-0 bottom-0 top-20 z-30 bg-black/40 transition-opacity duration-300 md:top-27.5 xl:hidden ${isOpen ? "opacity-100" : "pointer-events-none opacity-0"}`}
+            />
+
+            {/** Mobile view: top matches the navbar height at each breakpoint */}
+            <div
+                className={`fixed bottom-0 right-0 top-20 z-40 flex w-full flex-col bg-primary/95 text-white shadow-2xl backdrop-blur-xl transition-transform duration-300 ease-in-out sm:w-80 md:top-27.5 md:w-96 xl:hidden ${isOpen ? "translate-x-0" : "translate-x-full"}`}
             >
                 <ul className='flex-1 overflow-y-auto'>
                     {navItems.map((item) => {
@@ -88,9 +107,10 @@ const NavBar = () => {
                                 <Link
                                     href={item.href}
                                     onClick={() => setIsOpen(false)}
-                                    className='flex items-center gap-2 px-6 py-4 text-base font-medium transition-all duration-200 hover:bg-white/10 hover:pl-8'
+                                    aria-current={active ? "page" : undefined}
+                                    className={`flex items-center gap-2 px-6 py-4 text-lg font-medium transition-all duration-200 hover:bg-white/10 hover:pl-8 hover:opacity-100 ${active ? "opacity-100" : "opacity-70"}`}
                                 >
-                                    {active && <span className="size-1.5 shrink-0 rounded-full bg-white" />}
+                                    {active && <span className="size-2.5 shrink-0 rounded-full bg-white" />}
                                     {item.label}
                                 </Link>
                             </li>
@@ -102,7 +122,7 @@ const NavBar = () => {
                     <Link
                         href="#"
                         onClick={() => setIsOpen(false)}
-                        className='flex w-full items-center justify-center gap-2 rounded-full bg-white px-8 py-4 font-medium text-primary transition hover:bg-white/90'
+                        className='flex w-full items-center justify-center gap-2 rounded-full bg-white px-8 py-4 text-lg font-medium text-primary transition hover:bg-white/90'
                     >
                         Book a Free Trial <BookIcon />
                     </Link>

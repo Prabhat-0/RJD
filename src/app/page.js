@@ -1,3 +1,5 @@
+"use client"
+
 import BookFreeTrialButton from "@/components/BookFreeTrialButton";
 import vector from "../../public/Frame 68.png";
 import Image from "next/image";
@@ -8,7 +10,7 @@ import HeroIcons from "@/components/HeroIcons";
 import HeaderPara from "@/components/HeaderPara";
 import { HolisticHearingMethod, HomeVisit, IndependentAdvice, LifeTimeSupport, MusicianSpecialist, RemoteCare, WhatsAppIcon } from "@/svg";
 
-import { FaGift, FaStar, FaAward, FaUsers, FaCalendarCheck, FaArrowRight, FaCheck } from "react-icons/fa";
+import { FaGift, FaStar, FaAward, FaUsers, FaCalendarCheck, FaArrowRight, FaCheck, FaPlus, FaMinus } from "react-icons/fa";
 import { FaEarListen } from "react-icons/fa6";
 import MainHeader from "@/components/MainHeader";
 import ReasonCard from "@/components/ReasonCard";
@@ -33,7 +35,14 @@ import Widex from "../../public/Widex.png";
 import HomeVisitJpg from "../../public/HomeVisit.jpg";
 import TeamsImage from "../../public/teamsImage.png"
 import DoubleQuote from "../../public/DoubleQuote.png";
+import { useState } from "react";
 
+
+const Accordion = [{ heading: "How long is the trial?", para: "Every trial runs for a full 30 days, giving you time to test your hearing aids in real situations, at home, out and about, and with family." },
+{ heading: "How much does it cost?", para: "Every trial runs for a full 30 days, giving you time to test your hearing aids in real situations, at home, out and about, and with family." },
+{ heading: "Can I return hearing aids?", para: "Every trial runs for a full 30 days, giving you time to test your hearing aids in real situations, at home, out and about, and with family." },
+{ heading: "Do you visit homes?", para: "Every trial runs for a full 30 days, giving you time to test your hearing aids in real situations, at home, out and about, and with family." },
+{ heading: "Do I need a GP referral?", para: "Every trial runs for a full 30 days, giving you time to test your hearing aids in real situations, at home, out and about, and with family." }];
 
 const testimonial = {
 	name: "Gregg Steveson",
@@ -86,20 +95,15 @@ const reasonCardItems = [
 	{ element: <LifeTimeSupport />, headerText: "Life Time Support", paraText: "Ongoing reviews, adjustments and honest advice for as long as you're with us." }
 ]
 
-const Stars = ({ color }) => (
-	<span className={`flex gap-0.5 text-[14px] ${color}`}>
-		{[...Array(5)].map((_, i) => <FaStar key={i} />)}
-	</span>
-);
+
 
 const heroIcons = [
-	{ text: "Free Trial", icon: <FaGift className="text-primary" /> },
-	{ text: "Google", icon: <Stars color="text-yellow-400" /> },
-	{ text: "TrustPilot", icon: <Stars color="text-[#00B67A]" /> },
-	{ text: "20+ Years Experience", icon: <FaAward className="text-primary" /> },
-	{ text: "1000+ Happy Patients", icon: <FaUsers className="text-primary" /> },
-	{ text: "Independent Audiologists", icon: <FaEarListen className="text-primary" /> },
-	{ text: "30-Day Free Trial", icon: <FaCalendarCheck className="text-primary" /> },
+	{ text: "30-Day Free Trial" },
+	{ text: "★★★★★Google" },
+	{ text: "★★★★★Trustpilot" },
+	{ text: "20+ Years Experience" },
+	{ text: "1000+ Happy Patients" },
+	{ text: "Independent Audiologists" },
 ];
 
 const TeleIcon = () => {
@@ -114,29 +118,44 @@ const paraText =
 	"Try any leading hearing aid free for one month, in your own home, with no pressure to buy. Our friendly Yorkshire team makes it simple, from your very first phone call.";
 
 export default function Home() {
+	const [openIndex, setOpenIndex] = useState(null);
+
+	const handleAccordion = (index) => {
+		setOpenIndex(openIndex == index ? null : index);
+	}
+
 	return (
 		<>
-			{/**Hero Section */}
-			<main className="relative w-full bg-[#F2FAFF] xl:h-204.75" id="hero">
 
-				{/* Background vector: own clipped layer, so the WhatsApp button can still overflow the section */}
-				<div className="pointer-events-none absolute inset-0 z-0 overflow-hidden">
+			{/* ======================================= */}
+
+			{/**Hero Section */}
+
+			{/* ======================================= */}
+
+			<main
+				className="relative w-full bg-[#F2FAFF] pt-20 md:pt-27.5 xl:h-[929px]"
+				id="hero"
+			>
+
+				{/* Background vector */}
+				<div className="pointer-events-none absolute inset-0 z-0 overflow-hidden top-27.5 ">
 					<Image
 						src={vector}
 						alt=""
 						width={1058}
 						height={806}
 						quality={90}
-						className="absolute bottom-0 left-0 h-full w-auto max-w-none object-contain object-left-bottom"
+						className="absolute bottom-0 left-0 h-full w-auto max-w-[1058px] object-contain object-bottom-left"
 					/>
 				</div>
 
 				{/* Centered content container */}
-				<div className="relative z-10 mx-auto flex w-full max-w-360 items-center gap-8 px-4 pt-10 pb-44 sm:px-8 lg:px-12 xl:h-full xl:pt-0 xl:pb-40">
+				<div className="relative z-10 mx-auto flex w-full max-w-360 items-center gap-8 px-4 pt-10 pb-44 sm:px-8 lg:px-0 xl:h-full xl:pt-0 xl:pb-40">
 
 					{/* Left column */}
 					<div className="flex w-full flex-col gap-6 lg:w-1/2 lg:gap-8">
-						<HeaderPara text="FREE, NO-OBLIGATION TRIAL" />
+						<HeaderPara text="FREE, NO-OBLIGATION TRIAL" leading={"leading-[100%]"} textSize={"text-[18px]"} />
 
 						<h1 className="font-fraunces font-bold text-primary text-[clamp(2rem,6vw,4rem)] leading-[1.1] tracking-tight text-balance wrap-break-word">
 							Hear every{" "}
@@ -164,7 +183,7 @@ export default function Home() {
 					</div>
 
 					{/* Right column: explicit height so `fill` works */}
-					<div className="relative hidden h-125 w-1/2 lg:block xl:h-full">
+					<div className="relative hidden h-157 w-[706px] lg:block xl:h-full">
 						<Image
 							src={HeroImage}
 							alt="Hearing specialist helping a patient"
@@ -172,7 +191,7 @@ export default function Home() {
 							sizes={"100vw"}
 							priority
 							quality={90}
-							className="pointer-events-none object-contain object-right-bottom"
+							className="pointer-events-none absolute right-0 object-contain object-bottom-right"
 						/>
 					</div>
 				</div>
@@ -183,7 +202,7 @@ export default function Home() {
 						{[0, 1].map((copy) => (
 							<div key={copy} className="flex shrink-0 gap-3 pr-3" aria-hidden={copy === 1}>
 								{heroIcons.map((item) => (
-									<HeroIcons key={`${copy}-${item.text}`} icon={item.icon} text={item.text} />
+									<HeroIcons key={`${copy}-${item.text}`} text={item.text} />
 								))}
 							</div>
 						))}
@@ -191,17 +210,27 @@ export default function Home() {
 				</div>
 
 				{/* WhatsApp button */}
-				<div className="absolute -bottom-15 right-6 z-20 grid size-27.5 cursor-pointer place-items-center rounded-full bg-white shadow-md shadow-black/80 sm:right-25">
-					<WhatsAppIcon className="size-14" />
-				</div>
+				<a
+					href="https://wa.me/44XXXXXXXXXX"
+					target="_blank"
+					rel="noopener noreferrer"
+					aria-label="Chat on WhatsApp"
+					className="fixed bottom-4 right-4 z-40 flex size-16 cursor-pointer items-center justify-center rounded-full bg-white/30 shadow-md shadow-black/40 backdrop-blur-xl transition-transform duration-300 ease-out hover:scale-105 sm:bottom-6 sm:right-6 sm:size-20 md:bottom-8 md:right-8 lg:size-24 xl:bottom-10 xl:right-25 xl:size-27.5 motion-reduce:transition-none motion-reduce:hover:scale-100"
+				>
+					<WhatsAppIcon className="size-8 sm:size-10 lg:size-12 xl:size-14" />
+				</a>
 			</main>
+
+			{/* ======================================= */}
 
 			{/**Trusted Across cards  */}
 
+			{/* ======================================= */}
+
 			<section className="grid h-auto w-full place-items-center">
-				<div className="flex w-full max-w-360 flex-col items-center justify-center pt-20 pb-20 gap-10">
+				<div className="flex w-full max-w-360 flex-col items-center justify-center py-20 gap-10 p-2 lg:px-0">
 					<div className="flex flex-col gap-3 items-center justify-center text-center">
-						<HeaderPara text="Trusted Across Yorkshire" />
+						<HeaderPara text="TRUSTED ACROSS YORKSHIRE" textSize="text-[24px]" />
 						<MainHeader text={"Why choose RJD Hearing Care"} />
 						<ParaGraph textSize="text-[20px]" text={"Six reasons patients across Yorkshire trust us with their hearing, year after year."} />
 					</div>
@@ -210,11 +239,16 @@ export default function Home() {
 							<ReasonCard key={item.headerText} element={item.element} headerText={item.headerText} paraText={item.paraText} />
 						))}
 					</div>
-					<BookFreeTrialButton />
+					<BookFreeTrialButton width="w-[351px]" />
 				</div>
 			</section>
 
-			<section className="relative w-full overflow-hidden bg-[#F2FAFF] py-16 lg:py-20">
+			{/* ======================================= */}
+
+			{/**Journey section  */}
+
+			{/* ======================================= */}
+			<section className="relative w-full overflow-hidden bg-[#03B2E71A] py-16 lg:py-20 max-h-[1146px]">
 
 				{/* Background vector: 40% of screen width, pinned bottom-right */}
 				<div className="pointer-events-none absolute inset-0 z-0">
@@ -229,64 +263,77 @@ export default function Home() {
 				</div>
 
 				{/* Content */}
-				<div className="relative z-10 mx-auto w-full max-w-360 px-4 sm:px-8 lg:px-12">
+				<div className="relative z-10 mx-auto w-full max-w-360 px-4 sm:px-8 lg:px-0 h-auto">
 
 					{/* Heading */}
-					<div className="mb-12 flex flex-col items-center justify-center gap-4 text-center lg:mb-16">
+					<div className=" mb-12 flex flex-col items-center justify-center gap-4 text-center ">
 						<HeaderPara text="YOUR JOURNEY" />
 						<MainHeader text="How We Help You" />
 					</div>
 
-					<div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-[2fr_3fr] lg:gap-16">
+					<div className="flex items-center gap-10  lg:gap-">
 
 						{/* Left: image */}
-						<div className="w-full hidden lg:block">
+						<div className="hidden h-[806px] w-[630px] shrink-0 lg:block">
 							<Image
 								src={JourneyImage}
 								alt="Journey Image"
 								width={630}
 								height={806}
 								quality={90}
-								className="mx-auto h-auto w-full max-w-xs sm:max-w-sm lg:max-w-md"
+								className="h-full w-full object-cover"
 							/>
 						</div>
 
 						{/* Right: timeline */}
-						<div className="flex w-full flex-col gap-10">
+						<div className="flex w-full flex-col items-start gap-10 lg:w-[590px]">
 							<ol>
 								{journeySteps.map((step, index) => (
-									<li key={step.title} className="relative pb-10 pl-20 last:pb-0 sm:pl-24">
-
+									<li
+										key={step.title}
+										className="relative pb-25 pl-20 last:pb-0 sm:pl-24"
+									>
 										{/* Number circle */}
 										<div className="absolute left-0 top-0 z-10 grid size-15 place-items-center rounded-full bg-primary text-xl font-semibold text-white">
 											{index + 1}
 										</div>
 
-										{/* Line to the next circle: never on the last step */}
-										<div className="absolute left-7.5 top-15 bottom-0 w-px -translate-x-1/2 bg-primary last:hidden" />
+										{/* Line: from below the circle to the bottom of this li */}
+										<div className="absolute bottom-0 left-7.5 top-15 w-px -translate-x-1/2 bg-primary" />
 
-										<MainHeader text={step.title} textColor="text-primary" textSize="text-2xl lg:text-[28px]" />
+										<MainHeader
+											text={step.title}
+											textColor="text-primary"
+											textSize="text-2xl lg:text-[28px]"
+										/>
 										<ParaGraph text={step.text} textSize="text-base lg:text-[18px]" />
 									</li>
 								))}
 							</ol>
 
-							<div className="w-full grid place-items-center">
+							<div className="grid w-full place-items-center">
 								<BookFreeTrialButton
 									background="bg-primary"
 									textColor="text-[#F2FAFF]"
 									hoverBg="hover:bg-[#F2FAFF]"
 									hoverText="hover:text-primary"
+									width="w-[281px]"
 								/>
 							</div>
 						</div>
 					</div>
 				</div>
 			</section>
-			{/** Featured Section: paste this inside your page's JSX, where the old section was */}
+
+			{/* ======================================= */}
+
+			{/** Featured Section */}
+
+			{/* ======================================= */}
+
 			<section className="relative w-full overflow-hidden py-16 lg:py-20">
 
-				{/* Background image: pinned bottom-right, full width */}
+				{/* Background image*/}
 				<div className="pointer-events-none absolute inset-0 z-0">
 					<Image
 						src={FeaturedServices}
@@ -298,13 +345,13 @@ export default function Home() {
 					/>
 				</div>
 
-				{/* Header row: label + heading on the left, button at the end */}
+				{/* Header row */}
 				<div className="relative z-10 mx-auto mb-10 flex w-full max-w-360 flex-col gap-6 px-4 sm:px-8 md:mb-12 md:flex-row md:items-end md:justify-between lg:mb-16 lg:px-12">
 
 					<div className="flex flex-col items-start gap-4">
 						<div className="flex items-center gap-5">
 							<div className="h-0.5 w-13 bg-[#03B2E7]" />
-							<HeaderPara text="Featured Services" textColor="text-[#03B2E7]" />
+							<HeaderPara text={"Featured Services"} textColor={"text-[#03B2E7]"} textSize={"text-[18px]"} />
 						</div>
 						<MainHeader text="Everything your ears need" />
 					</div>
@@ -322,7 +369,7 @@ export default function Home() {
 				{/* Cards grid */}
 				<div className="relative z-10 mx-auto grid w-full max-w-360 grid-cols-1 gap-6 px-4 sm:grid-cols-2 sm:px-8 lg:grid-cols-4 lg:grid-rows-2 lg:px-12">
 
-					{/* Big card: image fills the card, gradient fades black 80% (bottom) to 0% (top) */}
+					{/* Big card*/}
 					<div className="relative min-h-80 overflow-hidden rounded-2xl sm:col-span-2 lg:row-span-2">
 						<Image
 							src={HearingAids}
@@ -354,8 +401,11 @@ export default function Home() {
 				</div>
 			</section>
 
+			{/* ======================================= */}
 
 			{/**Services Section  */}
+
+			{/* ======================================= */}
 			<section className="relative w-full overflow-hidden bg-linear-[118.47deg,#0E4461_0%,#04293D_100%]" id="Services">
 				{/* Background image */}
 				<Image
@@ -409,12 +459,16 @@ export default function Home() {
 							hoverBg="hover:bg-primary"
 							border="border-none"
 							hoverText="hover:text-white"
+							width="w-[281px]"
 						/>
 					</div>
 				</div>
 			</section>
+			{/* ======================================= */}
 
 			{/**Best hearing aids section */}
+
+			{/* ======================================= */}
 			<section className="relative w-full overflow-hidden lg:flex lg:min-h-150 lg:items-center" id="HearingAids">
 
 				<div className="relative z-10 mx-auto flex w-full max-w-360 flex-col items-center gap-8 px-4 py-12 text-center sm:px-8 lg:gap-10 lg:px-12 lg:py-10">
@@ -432,12 +486,12 @@ export default function Home() {
 								key={item.header}
 								className="relative flex h-full w-full flex-col items-center justify-center gap-5 p-4 md:p-5 lg:gap-6 lg:p-8"
 							>
-								{/* Shorter divider: 60% of the card height, centered, hidden after the last card and on phones */}
+								{/* Shorter divider */}
 								{index < hearingCards.length - 1 && (
 									<div className="absolute right-0 top-1/2 hidden h-3/5 w-px -translate-y-1/2 bg-[#B7B9B9] md:block" />
 								)}
 
-								{/* Image: scales with the card, never overflows */}
+								{/* Image*/}
 								<div className="flex h-28 w-full items-center justify-center md:h-32 lg:h-36">
 									<Image
 										src={item.src}
@@ -455,7 +509,7 @@ export default function Home() {
 
 									<ParaGraph text={item.para} textColor="text-[#454545]" textSize="text-sm lg:text-base" />
 
-									{/* One line at every width */}
+
 									<Link
 										href="#"
 										className="inline-flex items-center gap-2 whitespace-nowrap text-primary underline"
@@ -469,11 +523,15 @@ export default function Home() {
 				</div>
 
 			</section>
+			{/* ======================================= */}
 
 			{/**Home Visits  */}
+
+			{/* ======================================= */}
+
 			<section id="HomeVisits" className="grid w-full grid-cols-1 lg:min-h-181.75 lg:grid-cols-2">
 
-				{/* Left: image fills its half (desktop only) */}
+				{/* Left */}
 				<div className="relative hidden lg:block">
 					<Image
 						src={HomeVisitJpg}
@@ -485,7 +543,7 @@ export default function Home() {
 					/>
 				</div>
 
-				{/* Right: text, vertically centered */}
+				{/* Right */}
 				<div className="flex flex-col items-start justify-center gap-4 bg-linear-[118.47deg,#0E4461_0%,#04293D_100%] px-4 py-12 sm:px-8 sm:py-16 lg:gap-5 lg:p-14 xl:p-20 xl:pr-32">
 
 					<div className="flex items-center gap-5">
@@ -512,6 +570,95 @@ export default function Home() {
 				</div>
 
 			</section>
+
+			{/* ======================================= */}
+
+			{/**Frequently asked Questions  */}
+
+			{/* ======================================= */}
+
+			<section className="w-full py-20 ">
+
+				<div className=" z-10 mx-auto mb-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 w-full max-w-360 gap-10 px-4 sm:px-8 md:mb-12 lg:mb-16 lg:px-12">
+					<div className="relative z-10 mx-auto mb-10 flex w-full flex-col gap-6 px-4 sm:px-8  lg:px-12">
+
+						<div className="flex flex-col items-start gap-2">
+							<div className="flex items-center gap-5">
+								<div className="h-0.5 w-13 bg-[#03B2E7]" />
+								<HeaderPara text="Questions" textColor="text-[#03B2E7]" />
+							</div>
+							<MainHeader text="Frequently asked questions" />
+							<ParaGraph text="Still unsure about something? Give us a call and we'll talk it through." textSize="text-[20px]" />
+						</div>
+
+						<div className="bg-[#F1F8FC]  w-auto lg:w-md flex flex-col gap-5 items-center  py-8 rounded-3xl border border-[#0474BC1A] ">
+							<h2 className="font-sans font-bold font-max(27px) ">Speak To The Directly</h2>
+							<Link
+								href="#"
+								className="flex items-center gap-2 whitespace-nowrap rounded-full border-2 border-primary bg-primary px-6 py-3 text-[16px] font-semibold text-[#F2FAFF] transition hover:bg-primary/80"
+							>
+								<TeleIcon /> Call us: 01274 862623
+							</Link>
+						</div>
+					</div>
+					{/**Accordion */}
+					<div className=" flex flex-col ">
+
+						{Accordion.map((item, index) => {
+
+							const isOpen = openIndex === index;
+
+							return (
+								<div
+									key={index}
+									className={`flex flex-col px-2 transition-all duration-300 ease-in-out ${isOpen
+										? "bg-[linear-gradient(90deg,rgba(3,178,231,0.1)_0%,rgba(3,178,231,0)_100%)]"
+										: ""
+										}`}
+								>
+									{/* Header */}
+									<div
+										className="flex cursor-pointer items-center justify-between border-t border-[#0474BC1A] px-2 py-5"
+										onClick={() => handleAccordion(index)}
+										aria-expanded={isOpen}
+									>
+										<MainHeader text={item.heading} textSize="text-[28px]" />
+										<FaPlus
+											className={`shrink-0 transition-transform duration-300 ease-in-out ${isOpen ? "rotate-45" : "rotate-0"
+												}`}
+										/>
+									</div>
+
+									{/* Animated panel */}
+									<div
+										className={`grid transition-[grid-template-rows,opacity] duration-300 ease-in-out ${isOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
+											}`}
+									>
+										<div className="overflow-hidden">
+											<ParaGraph
+												text={item.para}
+												textSize="text-[20px] leading-[30px]"
+											/>
+											<div className="h-5" />
+										</div>
+									</div>
+								</div>
+							)
+						})}
+
+
+
+					</div>
+				</div>
+
+			</section>
+
+
+			{/* ======================================= */}
+
+			{/**Team Visits  */}
+
+			{/* ======================================= */}
 
 			<section id="TeamsVisit" className="grid w-full grid-cols-1 lg:min-h-181.75 lg:grid-cols-2">
 
@@ -556,34 +703,48 @@ export default function Home() {
 
 			</section>
 
+			{/* ======================================= */}
 
-			<section id="testimonials" className="w-full overflow-hidden py-16 lg:min-h-150 lg:py-20">
+			{/**Testimonials */}
 
-				<div className="mx-auto flex w-full max-w-360 flex-col items-center gap-10 px-4 text-center sm:px-8 lg:gap-14 lg:px-12">
+			{/* ======================================= */}
+
+			<section id="testimonials" className="w-full overflow-hidden py-12 lg:py-14">
+
+				<div className="mx-auto flex w-full max-w-360 flex-col items-center px-4 text-center sm:px-8 animate-fade-up">
 					<MainHeader text="Testimonials" />
 				</div>
 
-				{/* Marquee window: full width, */}
-				<div className="mt-10 w-full overflow-hidden mask-[linear-gradient(to_right,transparent,black_6%,black_94%,transparent)] lg:mt-14">
+				{/* Marquee window: py-4 leaves room so the hover lift and shadow aren't clipped */}
+				<div className="mt-4 w-full overflow-hidden py-4 mask-[linear-gradient(to_right,transparent,black_6%,black_94%,transparent)] lg:mt-6">
 
-					<div className="flex w-max animate-marquee [animation-duration:45s] hover:[animation-play-state:paused] motion-reduce:animate-none">
+					<div className="flex w-max animate-marquee [animation-duration:70s] hover:[animation-play-state:paused] motion-reduce:animate-none">
 						{[0, 1].map((copy) => (
 							<div key={copy} className="flex shrink-0 gap-6 pr-6" aria-hidden={copy === 1}>
 								{Array.from({ length: CARD_COUNT }).map((_, i) => (
 									<div
 										key={`${copy}-${i}`}
-										className="relative flex w-72 shrink-0 flex-col gap-4 overflow-hidden rounded-2xl border border-[#B7B9B9]/50 bg-white p-6 text-left shadow-sm sm:w-80 lg:w-96"
+										className="group relative flex w-72 shrink-0 flex-col overflow-hidden rounded-2xl border border-[#B7B9B9]/50 bg-white p-6 text-left shadow-sm transition-all duration-500 ease-out hover:-translate-y-1.5 hover:border-primary/40 hover:shadow-xl hover:shadow-primary/15 sm:w-80 lg:w-[518px] motion-reduce:transition-none motion-reduce:hover:translate-y-0"
 									>
-										<Image
-											src={DoubleQuote}
-											alt=""
-											width={105}
-											height={91}
-											className="pointer-events-none absolute left-4 top-4 z-0 h-auto  opacity-40"
-										/>
+										{/* Soft glow on hover */}
+										<div className="pointer-events-none absolute inset-0 bg-linear-to-br from-primary/8 via-transparent to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
 
-										<div className="relative z-10 flex flex-col gap-4 pt-12">
-											<ParaGraph text={testimonial.text} textColor="text-[#454545]" textSize="text-sm lg:text-base" />
+
+										{/* Content: 470px on lg (518px card minus 48px padding) */}
+										<div className="relative z-10 flex w-full flex-col gap-4 pt-12 lg:w-[470px] ">
+											<Image
+												src={DoubleQuote}
+												alt=""
+												width={105}
+												height={91}
+												className="pointer-events-none absolute left-0 top-5 z-0 h-auto w-20 opacity-80 transition-transform duration-700 ease-out group-hover:-rotate-6 group-hover:scale-110 "
+											/>
+
+											<ParaGraph
+												text={testimonial.text}
+												textColor="text-[#454545]"
+												textSize="text-sm lg:text-[22px] italic font-normal"
+											/>
 											<div className="flex flex-col">
 												<p className="text-lg font-semibold text-primary">{testimonial.name}</p>
 												<p className="text-sm text-[#7B7B7B]">{testimonial.role}</p>
@@ -595,7 +756,6 @@ export default function Home() {
 						))}
 					</div>
 				</div>
-
 			</section>
 
 

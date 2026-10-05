@@ -33,7 +33,7 @@ export default function RootLayout({ children }) {
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} ${fraunces.variable} ${gelasio.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col w-full bg-background items-center justify-center">
+      <body className="min-h-full flex flex-col w-full bg-background items-center justify-center m-0 p-0 box-border">
         <NavBar />
         {children}
         <Footer/>

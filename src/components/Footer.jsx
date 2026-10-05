@@ -26,20 +26,20 @@ const services = [
 ];
 
 const locations = [
-    { id: 1, name: null, street: "1 Dewsbury Road", town: "Cleckheaton", county: "West Yorkshire", postcode: "BD19 3RS" },
-    { id: 2, name: null, street: "152 High Street", town: "Northallerton", county: "North Yorkshire", postcode: "DL7 8JX" },
-    { id: 3, name: null, street: "92 Main Street", town: "Fulford", county: "York", postcode: "YO10 4PS" },
-    { id: 4, name: null, street: "4 West Gate", town: "Wetherby", county: null, postcode: "LS22 6LL" },
-    { id: 5, name: null, street: "10 Finkle Street", town: "Richmond", county: null, postcode: "DL10 4QB" },
-    { id: 6, name: null, street: "19 Market Hall", town: "Chesterfield", county: null, postcode: "S40 1AR" },
-    { id: 7, name: null, street: "7 Lidget Hill", town: "Pudsey", county: null, postcode: "LS28 7LG" },
-    { id: 8, name: "Oswaldtwistle Mills Conference Centre", street: "Pickup Street", town: "Oswaldtwistle", county: "East Lancs", postcode: "BB5 0EY" },
-    { id: 9, name: null, street: "15 Castlegate", town: "Thirsk", county: null, postcode: "YO7 1HL" },
-    { id: 10, name: null, street: "93 High Road", town: "Beeston", county: "Nottingham", postcode: "NG9 2LE" },
-    { id: 11, name: null, street: "14 Laneham Street", town: "Scunthorpe", county: null, postcode: "DN15 6LJ" },
-    { id: 12, name: "Vale Opticians", street: "1 High Street", town: "Boroughbridge", county: null, postcode: "YO51 9AW" },
-    { id: 13, name: "Jarrod Headley Opticians", street: "21 Chapeltown", town: "Pudsey", county: null, postcode: "LS28 7RZ" },
-    { id: 14, name: "Well North Physiotherapy & Wellbeing", street: "Unit 2 Phoenix Squash and Fitness Club", town: "Honley", county: null, postcode: "HD9 6PA" },
+    { id: 1, name:  "1 Dewsbury Road Cleckheaton West Yorkshire BD19 3RS" },
+    { id: 2, name:"152 High Street Northallerton North Yorkshire DL7 8JX" },
+    { id: 3, name: "92 Main Street Fulford York YO10 4PS" },
+    { id: 4, name: "4 West Gate Wetherby LS22 6LL" },
+    { id: 5, name: "10 Finkle Street Richmond DL10 4QB" },
+    { id: 6, name:  "19 Market Hall Chesterfield S40 1AR" },
+    { id: 7, name: "7 Lidget Hill Pudsey LS28 7LG" },
+    { id: 8, name: "Oswaldtwistle Mills Conference Centre Pickup Street Oswaldtwistle East Lancs BB5 0EY" },
+    { id: 9, name:"15 Castlegate Thirsk O7 1HL" },
+    { id: 10, name:"93 High Road Beeston Nottingham NG9 2LE" },
+    { id: 11, name:" 14 Laneham Street Scunthorpe DN15 6LJ" },
+    { id: 12, name: "Vale Opticians 1 High Street Boroughbridge YO51 9AW" },
+    { id: 13, name: "Jarrod Headley Opticians 21 Chapeltown Pudsey LS28 7RZ" },
+    { id: 14, name: "Well North Physiotherapy & Wellbeing Unit 2 Phoenix Squash and Fitness Club Honley HD9 6PA" },
 ];
 
 const quickLinks = ["Audiology Expert", "News", "Shop"];
@@ -92,17 +92,11 @@ const Footer = () => {
 
                 <div>
                     <FooterHeading>Our Locations</FooterHeading>
-                    <ul className='flex flex-col gap-3'>
+                    <ul className='flex flex-col gap-3 '>
                         {locations.map((loc) => (
-                            <li key={loc.id} className='flex items-start gap-2 text-sm leading-relaxed text-white/70 lg:text-base text-[16px]'>
-                                <span className='mt-[0.6em] size-1.5 shrink-0 rounded-full bg-current' />
-                                <div>
-                                    {loc.name && <span className='block font-medium text-white'>{loc.name}</span>}
-                                    <span className='block'>
-                                        {[loc.street, loc.town, loc.county].filter(Boolean).join(", ")}
-                                    </span>
-                                    <span className='block'>{loc.postcode}</span>
-                                </div>
+                            <li key={loc.id} className='flex items-start gap-2 transition-all duration-300 ease-in text-sm leading-relaxed text-white/70 text-[16px] hover:text-white'>
+                                <span className='mt-[0.6em] size-1.5 shrink-0 rounded-full bg-current space-x-2.5 font-sans' />
+                                <span >{loc.name}</span>
                             </li>
                         ))}
                     </ul>
@@ -144,7 +138,7 @@ const Footer = () => {
                         href="mailto:info@rjdhearingcare.co.uk"
                         className='flex items-center gap-2 break-all transition-colors hover:text-white'
                     >
-                        <FaMessage className='shrink-0' /> info@rjdhearingcare.co.uk
+                        <FaMessage  className='shrink-0' /> info@rjdhearingcare.co.uk
                     </Link>
                 </div>
             
