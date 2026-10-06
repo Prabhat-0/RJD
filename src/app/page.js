@@ -6,14 +6,10 @@ import Image from "next/image";
 import Link from "next/link";
 import HeroImage from "../../public/heroImage.png";
 import ParaGraph from "@/components/ParaGraph";
-import HeroIcons from "@/components/HeroIcons";
 import HeaderPara from "@/components/HeaderPara";
 import { HolisticHearingMethod, HomeVisit, IndependentAdvice, LifeTimeSupport, MusicianSpecialist, RemoteCare, WhatsAppIcon } from "@/svg";
-
-import { FaGift, FaStar, FaAward, FaUsers, FaCalendarCheck, FaArrowRight, FaCheck, FaPlus, FaMinus } from "react-icons/fa";
-import { FaEarListen } from "react-icons/fa6";
+import { FaArrowRight, FaCheck, FaPlus } from "react-icons/fa";
 import MainHeader from "@/components/MainHeader";
-import ReasonCard from "@/components/ReasonCard";
 import JourneyFrame from "../../public/journeyFrame.png"
 import JourneyImage from "../../public/journeyImage.png"
 import FeaturedServices from "../../public/featuredServices.png"
@@ -68,7 +64,8 @@ const steps = [
 const journeyCardDetail = [{ imgSrc: EarWaxRemoval, headerText: "Ear Wax Removal", headerTextColor: "text-white", paraText: "Gentle micro-suction, quick and comfortable.", paraTextColor: "text-white", bg: "bg-[#4373B6]" },
 { imgSrc: HearingTest, headerText: "Hearing Tests", headerTextColor: " text-[#052F45]", paraText: " Thorough, unhurried, explained simply.", paraTextColor: "text-[#0A1E2B] ", bg: "bg-[#F1F8FC]" },
 { imgSrc: TittinusSupport, headerText: "Tinnitus Support", headerTextColor: " text-white", paraText: " A calmer approach to ringing or buzzing.", paraTextColor: " text-white", bg: "bg-[#64B0E2]" },
-{ imgSrc: EarProtection, headerText: "Ear Protection", headerTextColor: " text-[#052F45]", paraText: " Moulded plugs for music, work and sleep.", paraTextColor: " text-[#0A1E2B]", bg: "bg-[#F1F8FC]" }];
+{ imgSrc: EarProtection, headerText: "Ear Protection", headerTextColor: " text-[#052F45]", paraText: " Moulded plugs for music, work and sleep.", paraTextColor: " text-[#0A1E2B]", bg: "bg-[#F1F8FC]" }
+];
 
 const journeySteps = [
 	{
@@ -84,7 +81,6 @@ const journeySteps = [
 		text: "Fine tuning, remote support and annual reviews. We stay with you for the long run, not just the first fitting.",
 	},
 ];
-
 
 const reasonCardItems = [
 	{ element: <IndependentAdvice />, headerText: "Independent Advice", paraText: "Not tied to one manufacturer, so our recommendations are about what suits you, never sales targets." },
@@ -128,34 +124,36 @@ export default function Home() {
 		<>
 
 			{/* ======================================= */}
-
 			{/**Hero Section */}
-
 			{/* ======================================= */}
 
 			<main
-				className="relative w-full bg-[#F2FAFF] pt-20 md:pt-27.5 xl:h-[929px]"
+				className="relative w-full bg-[#F2FAFF] pt-20 md:pt-27.5 "
 				id="hero"
 			>
 
 				{/* Background vector */}
-				<div className="pointer-events-none absolute inset-0 z-0 overflow-hidden top-27.5 ">
+				<div className="pointer-events-none absolute inset-0 z-0 overflow-hidden">
 					<Image
 						src={vector}
 						alt=""
 						width={1058}
 						height={806}
-						quality={90}
-						className="absolute bottom-0 left-0 h-full w-auto max-w-[1058px] object-contain object-bottom-left"
+						quality={[75, 90]}
+						className="absolute bottom-0 left-0 h-full w-auto  object-contain object-bottom-left"
 					/>
 				</div>
 
 				{/* Centered content container */}
-				<div className="relative z-10 mx-auto flex w-full max-w-360 items-center gap-8 px-4 pt-10 pb-44 sm:px-8 lg:px-0 xl:h-full xl:pt-0 xl:pb-40">
+				<div className="relative z-10 mx-auto flex w-full max-w-[1250px] 2xl:max-w-360 items-center md:flex-col lg:flex-row flex-col gap-8 px-4 pt-10 pb-44 sm:px-8 md:px-8 lg:px-8 xl:px-0  xl:h-full xl:pt-10 ">
 
 					{/* Left column */}
-					<div className="flex w-full flex-col gap-6 lg:w-1/2 lg:gap-8">
-						<HeaderPara text="FREE, NO-OBLIGATION TRIAL" leading={"leading-[100%]"} textSize={"text-[18px]"} />
+					<div className="flex w-full flex-col gap-6 lg:w-1/2 lg:gap-15">
+						<HeaderPara
+							text="FREE, NO-OBLIGATION TRIAL"
+							leading={"leading-[100%]"}
+							textSize={"text-[18px]"}
+						/>
 
 						<h1 className="font-fraunces font-bold text-primary text-[clamp(2rem,6vw,4rem)] leading-[1.1] tracking-tight text-balance wrap-break-word">
 							Hear every{" "}
@@ -163,15 +161,14 @@ export default function Home() {
 							<span className="lg:block">again, right now</span>
 						</h1>
 
-						<ParaGraph text={paraText} />
+						<div className="max-w-162">
+							<ParaGraph text={paraText} textSize="text-[22px]" />
+						</div>
 
-						<div className="flex flex-wrap gap-3 sm:gap-5">
-							<Link
-								href="#"
-								className="flex items-center gap-2 whitespace-nowrap rounded-full border-2 border-primary bg-primary px-6 py-3 text-[16px] font-semibold text-[#F2FAFF] transition hover:bg-primary/80"
-							>
-								<TeleIcon /> Call us: 01274 862623
-							</Link>
+
+						<div className="flex flex-wrap gap-3 sm:gap-5 items-center">
+							<BookFreeTrialButton text="Call us: 01274 862623" icon={<TeleIcon />} />
+
 							<BookFreeTrialButton
 								background="bg-[#F2FAFF]"
 								textColor="text-primary"
@@ -183,15 +180,15 @@ export default function Home() {
 					</div>
 
 					{/* Right column: explicit height so `fill` works */}
-					<div className="relative hidden h-157 w-[706px] lg:block xl:h-full">
+					<div className=" md:h-100 lg:h-157 h-auto relative z-10 xl:h-full w-full lg:w-1/2  lg:pt-[77px]">
 						<Image
 							src={HeroImage}
 							alt="Hearing specialist helping a patient"
-							fill
-							sizes={"100vw"}
+
+
 							priority
-							quality={90}
-							className="pointer-events-none absolute right-0 object-contain object-bottom-right"
+							quality={[75, 90]}
+							className="pointer-events-none object-contain h-full w-full "
 						/>
 					</div>
 				</div>
@@ -201,9 +198,14 @@ export default function Home() {
 					<div className="flex w-max animate-marquee hover:[animation-play-state:paused] motion-reduce:animate-none">
 						{[0, 1].map((copy) => (
 							<div key={copy} className="flex shrink-0 gap-3 pr-3" aria-hidden={copy === 1}>
-								{heroIcons.map((item) => (
-									<HeroIcons key={`${copy}-${item.text}`} text={item.text} />
-								))}
+								{heroIcons.map((item) => {
+									return (
+										<span className="flex h-15 shrink-0 items-center gap-2 whitespace-nowrap rounded-xl bg-white p-2 px-8 text-[20px] font-semibold text-[#052F45B2] shadow-sm shadow-white/25" key={item.text}>
+											{item.icon}
+											{item.text}
+										</span>
+									)
+								})}
 							</div>
 						))}
 					</div>
@@ -222,33 +224,45 @@ export default function Home() {
 			</main>
 
 			{/* ======================================= */}
-
 			{/**Trusted Across cards  */}
-
 			{/* ======================================= */}
 
 			<section className="grid h-auto w-full place-items-center">
-				<div className="flex w-full max-w-360 flex-col items-center justify-center py-20 gap-10 p-2 lg:px-0">
+				<div className="flex w-full  max-w-[1250px] 2xl:max-w-360 flex-col items-center justify-center py-20 gap-10 px-8 lg:px-0">
 					<div className="flex flex-col gap-3 items-center justify-center text-center">
 						<HeaderPara text="TRUSTED ACROSS YORKSHIRE" textSize="text-[24px]" />
 						<MainHeader text={"Why choose RJD Hearing Care"} />
 						<ParaGraph textSize="text-[20px]" text={"Six reasons patients across Yorkshire trust us with their hearing, year after year."} />
 					</div>
 					<div className="grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-2 xl:grid-cols-3">
-						{reasonCardItems.map((item) => (
-							<ReasonCard key={item.headerText} element={item.element} headerText={item.headerText} paraText={item.paraText} />
-						))}
+						{reasonCardItems.map((item) => {
+							return (
+								<div className="group relative flex h-full flex-col items-center justify-start gap-7.5 overflow-hidden rounded-2xl border border-primary/20 bg-white px-10 py-6 text-center transition-all duration-300 ease-out hover:-translate-y-2 hover:border-primary hover:shadow-xl hover:shadow-primary/25 motion-reduce:transition-none motion-reduce:hover:translate-y-0" key={item.headerText}>
+
+
+									<div className="pointer-events-none absolute inset-0 bg-linear-to-b from-primary/10 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+
+
+									<div className="relative z-10 grid size-25 shrink-0 place-items-center overflow-hidden rounded-full bg-primary p-2 transition-all duration-300 ease-out ">
+										{item.element}
+									</div>
+
+									<div className="relative z-10 flex flex-col items-center gap-7.5">
+										<h3 className="text-primary lg:text-[28px]  md:text-[24px] text-[22px] font-bold max-w-[400px] font-gelasio" > {item.headerText} </h3>
+										<ParaGraph text={item.paraText} textSize="text-base lg:text-[18px]" />
+									</div>
+								</div>
+							)
+						})}
 					</div>
 					<BookFreeTrialButton width="w-[351px]" />
 				</div>
 			</section>
 
 			{/* ======================================= */}
-
 			{/**Journey section  */}
-
 			{/* ======================================= */}
-			<section className="relative w-full overflow-hidden bg-[#03B2E71A] py-16 lg:py-20 max-h-[1146px]">
+			<section className="relative w-full overflow-hidden bg-[#03B2E71A] py-16 lg:py-20 ">
 
 				{/* Background vector: 40% of screen width, pinned bottom-right */}
 				<div className="pointer-events-none absolute inset-0 z-0">
@@ -257,13 +271,13 @@ export default function Home() {
 						alt=""
 						width={1058}
 						height={806}
-						quality={90}
+						quality={[75, 90]}
 						className="absolute bottom-0 right-0 h-auto md:h-full lg:h-[806px] w-[70vw] max-w-none object-contain object-bottom-right "
 					/>
 				</div>
 
 				{/* Content */}
-				<div className="relative z-10 mx-auto w-full max-w-360 px-4 sm:px-8 lg:px-0 h-auto">
+				<div className="relative z-10 mx-auto w-full max-w-[1250px] 2xl:max-w-360 px-4 sm:px-8 lg:px-0 h-auto">
 
 					{/* Heading */}
 					<div className=" mb-12 flex flex-col items-center justify-center gap-4 text-center ">
@@ -280,7 +294,7 @@ export default function Home() {
 								alt="Journey Image"
 								width={630}
 								height={806}
-								quality={90}
+								quality={[75, 90]}
 								className="h-full w-full object-cover"
 							/>
 						</div>
@@ -291,7 +305,7 @@ export default function Home() {
 								{journeySteps.map((step, index) => (
 									<li
 										key={step.title}
-										className="relative pb-25 pl-20 last:pb-0 sm:pl-24"
+										className="relative lg:pb-25 xl:pb-25 md:pb-20 pb-15 pl-20 last:pb-0 sm:pl-24 "
 									>
 										{/* Number circle */}
 										<div className="absolute left-0 top-0 z-10 grid size-15 place-items-center rounded-full bg-primary text-xl font-semibold text-white">
@@ -300,13 +314,15 @@ export default function Home() {
 
 										{/* Line: from below the circle to the bottom of this li */}
 										<div className="absolute bottom-0 left-7.5 top-15 w-px -translate-x-1/2 bg-primary" />
+										<div className="flex flex-col gap-4 lg:gap-5">
+											<MainHeader
+												text={step.title}
+												textColor="text-primary"
+												textSize="text-2xl lg:text-[28px]"
+											/>
+											<ParaGraph text={step.text} textSize="text-base lg:text-[18px]" />
+										</div>
 
-										<MainHeader
-											text={step.title}
-											textColor="text-primary"
-											textSize="text-2xl lg:text-[28px]"
-										/>
-										<ParaGraph text={step.text} textSize="text-base lg:text-[18px]" />
 									</li>
 								))}
 							</ol>
@@ -331,7 +347,7 @@ export default function Home() {
 
 			{/* ======================================= */}
 
-			<section className="relative w-full overflow-hidden py-16 lg:py-20">
+			<section className="relative w-full overflow-hidden py-15 lg:py-25 ">
 
 				{/* Background image*/}
 				<div className="pointer-events-none absolute inset-0 z-0">
@@ -340,20 +356,23 @@ export default function Home() {
 						alt=""
 						width={1440}
 						height={806}
-						quality={90}
+						quality={[75, 90]}
 						className="absolute bottom-0 right-0 h-auto w-full max-w-none object-contain object-right-bottom"
 					/>
 				</div>
 
 				{/* Header row */}
-				<div className="relative z-10 mx-auto mb-10 flex w-full max-w-360 flex-col gap-6 px-4 sm:px-8 md:mb-12 md:flex-row md:items-end md:justify-between lg:mb-16 lg:px-12">
+				<div className="relative z-10 mx-auto mb-8 flex w-full max-w-[1250px] 2xl:max-w-360 flex-col gap-6 lg:gap-10 px-8 sm:px-8 md:mb-8 md:flex-row md:items-end md:justify-between lg:mb-10 lg:px-0">
 
 					<div className="flex flex-col items-start gap-4">
 						<div className="flex items-center gap-5">
 							<div className="h-0.5 w-13 bg-[#03B2E7]" />
 							<HeaderPara text={"Featured Services"} textColor={"text-[#03B2E7]"} textSize={"text-[18px]"} />
 						</div>
+
 						<MainHeader text="Everything your ears need" />
+
+
 					</div>
 
 					<div className="w-fit shrink-0">
@@ -367,7 +386,7 @@ export default function Home() {
 				</div>
 
 				{/* Cards grid */}
-				<div className="relative z-10 mx-auto grid w-full max-w-360 grid-cols-1 gap-6 px-4 sm:grid-cols-2 sm:px-8 lg:grid-cols-4 lg:grid-rows-2 lg:px-12">
+				<div className="relative z-10 mx-auto grid w-full max-w-[1250px] 2xl:max-w-360 grid-cols-1 gap-6 px-8 sm:grid-cols-2  lg:grid-cols-4 lg:grid-rows-2 lg:px-0">
 
 					{/* Big card*/}
 					<div className="relative min-h-80 overflow-hidden rounded-2xl sm:col-span-2 lg:row-span-2">
@@ -376,12 +395,15 @@ export default function Home() {
 							alt="Hearing Aids"
 							width={670}
 							height={500}
-							quality={90}
+							quality={[75, 90]}
 							className="absolute inset-0 z-0 h-full w-full object-cover"
 						/>
-						<div className="absolute inset-x-0 bottom-0 z-20 bg-linear-to-t from-black/80 to-transparent px-6 pb-5 pt-24 sm:px-10">
+						<div className="absolute inset-x-0  bottom-0 z-20 bg-linear-to-t from-black/80 to-transparent px-6 pb-5 pt-24 sm:px-10">
 							<MainHeader text="Hearing Aids" textSize="text-3xl lg:text-[38px]" textColor="text-white" />
+
 							<ParaGraph text="Every major brand, fitted and tuned by qualified audiologists." textColor="text-white" />
+
+
 						</div>
 					</div>
 
@@ -394,8 +416,12 @@ export default function Home() {
 							<div className="size-12 shrink-0">
 								<Image src={item.imgSrc} width={60} height={60} alt={item.headerText} className="object-cover" />
 							</div>
+
 							<MainHeader text={item.headerText} textColor={item.headerTextColor} textSize="text-2xl lg:text-[28px]" />
-							<ParaGraph text={item.paraText} textColor={item.paraTextColor} />
+							<div className="max-w-145">
+								<ParaGraph text={item.paraText} textColor={item.paraTextColor} />
+
+							</div>
 						</div>
 					))}
 				</div>
@@ -413,12 +439,12 @@ export default function Home() {
 					alt=""
 					width={1920}
 					height={744}
-					quality={90}
+					quality={[75, 90]}
 					sizes="100vw"
 					className="pointer-events-none absolute bottom-0 right-0 z-0 h-auto w-full"
 				/>
 
-				<div className="relative z-10 mx-auto flex w-full max-w-360 flex-col items-center gap-12 px-4 py-16 text-center sm:px-8 lg:gap-16 lg:px-12 lg:py-25">
+				<div className="relative z-10 mx-auto flex w-full max-w-360 flex-col items-center gap-12 px-4 py-16 text-center sm:px-8 lg:gap-20 lg:px-12 lg:py-25">
 
 					<div className="flex w-full flex-col items-center justify-center gap-5">
 						<HeaderPara text="Featured Services" textColor="text-primary" />
@@ -432,7 +458,7 @@ export default function Home() {
 
 							const isLeft = index % 2 === 1;
 							return (
-								<li key={step.title} className="relative min-h-20 pb-12 pl-28 last:pb-0 lg:grid lg:grid-cols-2 lg:pl-0">
+								<li key={step.title} className="relative min-h-20 pb-13.5 pl-28 last:pb-0 lg:grid lg:grid-cols-2 lg:pl-0">
 
 									<div className="absolute left-0 top-0 z-10 grid size-20 place-items-center rounded-full bg-white lg:left-1/2 lg:-translate-x-1/2">
 										<Image src={step.src} alt="" width={35} height={26} />
@@ -443,7 +469,7 @@ export default function Home() {
 									)}
 
 									<div className={`flex flex-col gap-3 ${isLeft ? "lg:col-start-1 lg:items-end lg:pr-20 lg:text-right" : "lg:col-start-2 lg:pl-20"}`}>
-										<MainHeader text={`${index + 1}. ${step.title}`} textColor="text-white" textSize="text-[32px]" />
+										<h2 className="text-white text-[24px] md:text-[28px] lg:text-[32px] font-gelasio font-bold " >{`${index + 1}. ${step.title}`}</h2>
 										<ParaGraph text={step.text} textColor="text-white/80" textSize="text-[20px]" />
 									</div>
 								</li>
@@ -471,7 +497,7 @@ export default function Home() {
 			{/* ======================================= */}
 			<section className="relative w-full overflow-hidden lg:flex lg:min-h-150 lg:items-center" id="HearingAids">
 
-				<div className="relative z-10 mx-auto flex w-full max-w-360 flex-col items-center gap-8 px-4 py-12 text-center sm:px-8 lg:gap-10 lg:px-12 lg:py-10">
+				<div className="relative z-10 mx-auto flex w-full max-w-360 flex-col items-center gap-8 px-4 py-15 md:py-18 text-center sm:px-8 lg:gap-10 lg:px-12 lg:py-25">
 
 					{/* Heading */}
 					<div className="flex w-full flex-col items-center justify-center gap-3 lg:gap-4">
@@ -488,7 +514,7 @@ export default function Home() {
 							>
 								{/* Shorter divider */}
 								{index < hearingCards.length - 1 && (
-									<div className="absolute right-0 top-1/2 hidden h-3/5 w-px -translate-y-1/2 bg-[#B7B9B9] md:block" />
+									<div className="absolute right-0 h-3/5 w-px top-1/2 -translate-y-1/2 bg-[#B7B9B9] md:block" />
 								)}
 
 								{/* Image*/}
@@ -537,7 +563,7 @@ export default function Home() {
 						src={HomeVisitJpg}
 						alt="Audiologist on a home visit"
 						fill
-						quality={90}
+						quality={[75, 90]}
 						sizes="50vw"
 						className="object-cover"
 					/>
@@ -550,22 +576,26 @@ export default function Home() {
 						<div className="h-0.5 w-13 bg-[#03B2E7]" />
 						<HeaderPara text="HOME VISITS" textColor="text-[#03B2E7]" />
 					</div>
-
-					<MainHeader text="Can't visit us? We'll come to you." textColor="text-white" />
+					<div className="max-w-131.5">
+						<MainHeader text="Can't visit us? We'll come to you." textColor="text-white" />
+					</div>
 
 					<ParaGraph
 						text="Many of our patients prefer the comfort of their own home. So if that suits you better, we'll simply bring the appointment to your front room."
 						textColor="text-white/80"
+						textSize="text-[20px]"
 					/>
 
 					{/* Checklist: icon + text always on one line, items wrap as whole units */}
-					<ul className="flex flex-col gap-3 font-sans text-base text-white/80 lg:text-xl">
-						{["Comfortable", "Family can join", "Same expert every time"].map((label) => (
-							<li key={label} className="flex items-center gap-2">
-								<FaCheck className="shrink-0" />
-								{label}
-							</li>
-						))}
+					<ul className="flex flex-col gap-3 font-sans text-base lg:text-[24px] text-white/80 lg:text-xl font-semibold ">
+						{["✓   Comfortable",
+							"✓   Family can join",
+							"✓   Same expert every time"].map((label) => (
+								<li key={label} className="flex items-center ">
+
+									{label}
+								</li>
+							))}
 					</ul>
 				</div>
 
@@ -577,80 +607,68 @@ export default function Home() {
 
 			{/* ======================================= */}
 
-			<section className="w-full py-20 ">
+			<section className="w-full py-20">
+				<div className="mx-auto grid w-full max-w-[1250px] 2xl:max-w-360 grid-cols-1 gap-10 px-4 sm:px-8 lg:grid-cols-[28rem_minmax(0,1fr)] lg:gap-16 lg:px-0">
 
-				<div className=" z-10 mx-auto mb-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 w-full max-w-360 gap-10 px-4 sm:px-8 md:mb-12 lg:mb-16 lg:px-12">
-					<div className="relative z-10 mx-auto mb-10 flex w-full flex-col gap-6 px-4 sm:px-8  lg:px-12">
-
+					{/* Left column: fixed width, accordion takes the rest */}
+					<div className="relative z-10 flex w-full flex-col gap-12 lg:gap-20">
 						<div className="flex flex-col items-start gap-2">
 							<div className="flex items-center gap-5">
 								<div className="h-0.5 w-13 bg-[#03B2E7]" />
 								<HeaderPara text="Questions" textColor="text-[#03B2E7]" />
 							</div>
 							<MainHeader text="Frequently asked questions" />
-							<ParaGraph text="Still unsure about something? Give us a call and we'll talk it through." textSize="text-[20px]" />
+							<ParaGraph
+								text="Still unsure about something? Give us a call and we'll talk it through."
+								textSize="text-[20px]"
+							/>
 						</div>
 
-						<div className="bg-[#F1F8FC]  w-auto lg:w-md flex flex-col gap-5 items-center  py-8 rounded-3xl border border-[#0474BC1A] ">
-							<h2 className="font-sans font-bold font-max(27px) ">Speak To The Directly</h2>
-							<Link
-								href="#"
-								className="flex items-center gap-2 whitespace-nowrap rounded-full border-2 border-primary bg-primary px-6 py-3 text-[16px] font-semibold text-[#F2FAFF] transition hover:bg-primary/80"
-							>
-								<TeleIcon /> Call us: 01274 862623
-							</Link>
+						<div className="flex w-full flex-col items-center gap-5 rounded-3xl border border-[#0474BC1A] bg-[#F1F8FC] px-4 py-8">
+							<h2 className="font-sans text-[27px] font-bold">Speak To The Directly</h2>
+							<BookFreeTrialButton text="Call us: 01274 862623" icon={<TeleIcon />} />
 						</div>
 					</div>
-					{/**Accordion */}
-					<div className=" flex flex-col ">
 
+					{/* Accordion: fills remaining space */}
+					<div className="flex min-w-0 flex-col">
 						{Accordion.map((item, index) => {
-
 							const isOpen = openIndex === index;
-
 							return (
 								<div
 									key={index}
-									className={`flex flex-col px-2 transition-all duration-300 ease-in-out ${isOpen
-										? "bg-[linear-gradient(90deg,rgba(3,178,231,0.1)_0%,rgba(3,178,231,0)_100%)]"
-										: ""
+									className={`flex flex-col px-2 transition-all duration-300 ease-in-out ${isOpen ? "bg-[linear-gradient(90deg,rgba(3,178,231,0.1)_0%,rgba(3,178,231,0)_100%)]" : ""
 										}`}
 								>
-									{/* Header */}
-									<div
-										className="flex cursor-pointer items-center justify-between border-t border-[#0474BC1A] px-2 py-5"
+									<button
+										type="button"
+										className="flex w-full cursor-pointer items-center justify-between gap-4 border-t border-[#0474BC1A] px-2 py-5 text-left"
 										onClick={() => handleAccordion(index)}
 										aria-expanded={isOpen}
 									>
-										<MainHeader text={item.heading} textSize="text-[28px]" />
+										<h3 className="font-gelasio text-[22px] font-bold text-[#052F45] lg:text-[28px]">
+											{item.heading}
+										</h3>
 										<FaPlus
 											className={`shrink-0 transition-transform duration-300 ease-in-out ${isOpen ? "rotate-45" : "rotate-0"
 												}`}
 										/>
-									</div>
+									</button>
 
-									{/* Animated panel */}
 									<div
 										className={`grid transition-[grid-template-rows,opacity] duration-300 ease-in-out ${isOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
 											}`}
 									>
 										<div className="overflow-hidden">
-											<ParaGraph
-												text={item.para}
-												textSize="text-[20px] leading-[30px]"
-											/>
+											<ParaGraph text={item.para} textSize="text-[20px] leading-[30px]" />
 											<div className="h-5" />
 										</div>
 									</div>
 								</div>
-							)
+							);
 						})}
-
-
-
 					</div>
 				</div>
-
 			</section>
 
 
@@ -668,7 +686,7 @@ export default function Home() {
 						src={TeamsImage}
 						alt="speak to team"
 						fill
-						quality={90}
+						quality={[75, 90]}
 						sizes="50vw"
 						className="object-cover"
 					/>
@@ -677,7 +695,7 @@ export default function Home() {
 				{/* Right: text, vertically centered */}
 				<div className="flex flex-col items-start justify-center gap-4 bg-primary px-4 py-12 sm:px-8 sm:py-16 lg:gap-5 lg:p-14 xl:p-20 xl:pr-32">
 
-					<MainHeader text=" Speak to our team directly" textColor="text-white" textSize="text-[66px]" />
+					<h1 className="text-white text-display font-gelasio font-bold" > Speak to our team directly</h1>
 
 					<ParaGraph
 						text="Book your free, no-obligation hearing assessment today and take the first step back to easy conversation."
@@ -685,17 +703,13 @@ export default function Home() {
 					/>
 
 					<div className="flex flex-col justify-between gap-10">
+
+						<BookFreeTrialButton text="Book Your Assessment" rounded="rounded-2xl" background=" bg-white" textColor="text-primary" hoverBg="bg-white/90" />
 						<Link
 							href="#"
-							className={`h-auto w-auto flex items-center gap-2 whitespace-nowrap rounded-2xl border border-primary px-4 py-3 text-[16px] font-semibold transition bg-white text-primary hover:bg-white/90`}
+							className="flex items-center gap-4 whitespace-nowrap rounded-full border-2 border-primary bg-primary px-6 py-3 text-[16px] font-semibold text-[#F2FAFF] transition hover:bg-primary/80"
 						>
-							Book Your Assessment
-						</Link>
-						<Link
-							href="#"
-							className="flex items-center gap-2 whitespace-nowrap rounded-full border-2 border-primary bg-primary px-6 py-3 text-[16px] font-semibold text-[#F2FAFF] transition hover:bg-primary/80"
-						>
-							<TeleIcon />{`${"  "} ${"01274 862623"}`}
+							<TeleIcon />{"01274 862623"}
 						</Link>
 					</div>
 

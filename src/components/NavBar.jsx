@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react'
 import logo from "../../public/_.png"
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { FaBars } from 'react-icons/fa';
+import { FaBars } from 'react-icons/fa6';
 import { FaX } from 'react-icons/fa6';
 import { BookIcon } from '@/svg';
 
@@ -42,11 +42,11 @@ const NavBar = () => {
         <nav className='fixed top-0 z-50 h-20 w-full bg-background font-sans md:h-27.5'>
 
             {/* Inner container: centered, max 1440px, padded on every screen size */}
-            <div className='mx-auto flex h-full w-full max-w-360 items-center justify-between gap-5 px-4 sm:px-8 min-[1400px]:gap-7.5'>
+            <div className='mx-auto flex h-full w-full max-w-[1250px] 2xl:max-w-360 items-center justify-between gap-5 px-4 lg:px-8 sm:px-8 min-[1400px]:gap-7.5 xl:px-0'>
 
                 {/** Logo */}
                 <Link href="/" className='h-17.5 w-28.5 shrink-0' aria-label="Home">
-                    <Image src={logo} alt="Logo" width={114} height={70} quality={90} priority className='h-auto w-28.5 object-cover' />
+                    <Image src={logo} alt="Logo" width={114} height={70} quality={[75,90]} priority className='h-auto w-28.5 object-cover' />
                 </Link>
 
                 {/** Desktop view: 18px from 1400px, 16px between 1280 and 1399px so all links fit */}
@@ -77,7 +77,7 @@ const NavBar = () => {
                     </Link>
                 </div>
 
-                {/** Hamburger (below xl) */}
+                {/** Hamburger*/}
                 <button
                     type="button"
                     aria-label={isOpen ? "Close menu" : "Open menu"}
@@ -85,7 +85,7 @@ const NavBar = () => {
                     className='flex size-12 shrink-0 cursor-pointer items-center justify-center text-primary xl:hidden'
                     onClick={() => setIsOpen(prev => !prev)}
                 >
-                    {isOpen ? <FaX className='size-6' /> : <FaBars className='size-6' />}
+                    {isOpen ? <FaX className='size-10' /> : <FaBars className='size-10' />}
                 </button>
             </div>
 

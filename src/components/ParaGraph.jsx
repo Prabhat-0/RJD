@@ -1,8 +1,8 @@
 import React from 'react'
 
-const ParaGraph = ({text ,textSize="text-[22px]" ,textColor="text-[#454545] " }) => {
+const ParaGraph = ({text ,textSize="text-[24px]" ,textColor="text-[#454545] " }) => {
   return (
-    <p className={`${textSize} font-sans ${textColor} font-medium`}>{text}</p>
+    <p className={` xl:${textSize} lg:${textSize} md:text-[20px] text-[16px]  font-sans ${textColor} font-medium `}>{text}</p>
   )
 }
 
