@@ -61,9 +61,9 @@ const FooterLink = ({ children, href = "#" }) => (
 
 const Footer = () => {
     return (
-        <footer id="footer" className='w-full bg-[#052F45]'>
+        <footer id="footer" className='w-full bg-nav-items'>
 
-            <div className='mx-auto grid w-full max-w-360 grid-cols-1 gap-10 px-4 py-12 sm:px-8 md:grid-cols-2 lg:grid-cols-4 lg:gap-12 lg:px-12 lg:py-16'>
+            <div className='mx-auto grid w-full 2xl:max-w-360 max-w-[1250px] grid-cols-1 gap-10 px-4 py-12 sm:px-8 md:grid-cols-2 lg:grid-cols-4 lg:gap-12 lg:px-18 xl:px-0 2xl:px-0 lg:py-16'>
 
                 <div className='flex flex-col gap-5'>
                     <Image src={RJDFooter} alt="RJD Hearing Care" width={98} height={60} className='h-auto w-24 sm:w-28' />
@@ -71,10 +71,10 @@ const Footer = () => {
                     <ParaGraph
                         text="You will benefit from our incredibly successful ‘holistic fitting method’ developed by Robert Donnan. It’s a very simple, person-led approach to the fitting of hearing aids, structured around our free trial. No-one else offers a non-structured trial process with so much help offered to get you hearing better again."
                         textColor='text-white/70'
-                        textSize='text-sm lg:text-base'
+                        textSize='text-[10px] sm:text-sm lg:text-base'
                     />
 
-                    <div className='flex flex-col gap-4 border-t border-white/10 pt-4'>
+                    <div className='flex flex-col gap-4 border-t border-white/10 pt-4 '>
                         <Link
                             href="tel:01274862623"
                             className="flex items-center gap-2 whitespace-nowrap text-[16px] font-semibold text-[#F2FAFF] transition-colors hover:text-primary"

@@ -1,39 +1,52 @@
 @import "tailwindcss";
 
 :root {
+  color-scheme: light;
   --background: #ffffff;
   --foreground: #171717;
+  --nav-h: 5rem;
 }
 
-
-  @keyframes marquee {
-    from { transform: translateX(0); }
-    to   { transform: translateX(-50%); }
-  }
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --color-primary: #0474BC;
-  --color-navItems: #052F45;
-  --color-secondary: #04293D;
-   --animate-marquee: marquee 25s linear infinite;
- --text-display: clamp(2.25rem, 1.5rem + 3.5vw, 4.125rem);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-  --font-fraunces: var(--font-fraunces-next);
-  --font-gelasio:var(--font-gelasio);
-}
-@media (prefers-color-scheme: dark) {
+@media (min-width: 48rem) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --nav-h: 6.875rem;
   }
 }
 
+html {
+  scroll-padding-top: var(--nav-h);
+}
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+}
+
+@theme {
+  --breakpoint-mb: 420px;
+}
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-primary: #0474bc;
+  --color-nav-items: #052f45;
+  --color-secondary: #04293d;
+
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
+  --font-fraunces: var(--font-fraunces-next), Georgia, serif;
+  --font-gelasio: var(--font-gelasio), Georgia, serif;
+
+  --text-display: clamp(2rem, 1.679rem + 2vw, 4.25rem);
+  --text-display--line-height: clamp(1,2vw,1.1);
+  --text-display--letter-spacing: -0.02em;
+}
+
+@theme {
+  --animate-marquee: marquee 25s linear infinite;
+
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
 }

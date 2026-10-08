@@ -1,8 +1,8 @@
 import React from 'react'
 
-const MainHeader = ({text, textColor="text-[#052F45]",textSize="text-[48px]"}) => {
+const MainHeader = ({text, textColor="text-[#052F45]",textSize="text-[48px]",font="font-fraunces"}) => {
   return (
-    <h1 className={`font-gelasio font-bold lg:${textSize} md:text-[48px] sm:text-[40px] text-[32px] ${textColor}  `}>
+    <h1 className={`${font} font-bold ${textSize}  ${textColor}  `}>
         {text}
     </h1>    
 )
