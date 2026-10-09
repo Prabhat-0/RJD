@@ -31,9 +31,9 @@ export default function RootLayout({ children }) {
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} ${fraunces.variable} ${gelasio.variable} h-full antialiased`}
+      className={`${geistSans.variable} scroll-smooth ${geistMono.variable} ${fraunces.variable} ${gelasio.variable} h-full antialiased`}
     >
-      <body className="min-h-full w-full bg-background  m-0 p-0 box-border">
+      <body className="min-h-full w-full bg-background  m-0 p-0 box-border ">
         <NavBar />
         {children}
         <Footer/>

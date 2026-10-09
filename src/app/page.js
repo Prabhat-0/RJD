@@ -1,5 +1,10 @@
 "use client"
 
+const mobileNo = "44XXXXXXXXXX"; // country code ke saath, bina + ya spaces ke
+const text = "Hey, I have an query";
+
+const whatsappUrl = `https://wa.me/${mobileNo}?text=${encodeURIComponent(text)}`;
+
 import BookFreeTrialButton from "@/components/BookFreeTrialButton";
 import vector from "../../public/Frame 68.png";
 import Image from "next/image";
@@ -130,9 +135,9 @@ const steps = [
 ];
 
 const journeyCardDetail = [{ imgSrc: EarWaxRemoval, headerText: "Ear Wax Removal", headerTextColor: "text-white", paraText: "Gentle micro-suction, quick and comfortable.", paraTextColor: "text-white", bg: "bg-[#4373B6]" },
-{ imgSrc: HearingTest, headerText: "Hearing Tests", headerTextColor: " text-[#052F45]", paraText: " Thorough, unhurried, explained simply.", paraTextColor: "text-[#0A1E2B] ", bg: "bg-[#F1F8FC]" },
+{ imgSrc: HearingTest, headerText: "Hearing Tests", headerTextColor: " text-[#052F45]", paraText: " Thorough, unhurried, explained simply.", paraTextColor: "text-[#0A1E2B99] ", bg: "bg-[#F1F8FC]" },
 { imgSrc: TittinusSupport, headerText: "Tinnitus Support", headerTextColor: " text-white", paraText: " A calmer approach to ringing or buzzing.", paraTextColor: " text-white", bg: "bg-[#64B0E2]" },
-{ imgSrc: EarProtection, headerText: "Ear Protection", headerTextColor: " text-[#052F45]", paraText: " Moulded plugs for music, work and sleep.", paraTextColor: " text-[#0A1E2B]", bg: "bg-[#F1F8FC]" }
+{ imgSrc: EarProtection, headerText: "Ear Protection", headerTextColor: " text-[#052F45]", paraText: " Moulded plugs for music, work and sleep.", paraTextColor: " text-[#0A1E2B99]", bg: "bg-[#F1F8FC]" }
 ];
 
 const journeySteps = [
@@ -221,7 +226,7 @@ export default function Home() {
 					/>
 				</div>
 
-				<div className="relative z-10 mx-auto flex w-full max-w-[1250px] flex-col items-center gap-8 md:gap-12 px-4 pt-7 xl:pt-10 pb-10 md:pb-20 lg:pb-40 sm:px-8 lg:flex-row md:px-7 xl:px-0 xl:gap-15 2xl:max-w-360 2xl:px-0">
+				<div className="relative z-10 mx-auto flex w-full max-w-[1250px] flex-col items-center gap-8 md:gap-12 px-4 pt-7 xl:pt-10 pb-4 md:pb-20 lg:pb-40 sm:px-8 lg:flex-row md:px-7 xl:px-0 xl:gap-15 2xl:max-w-360 2xl:px-0">
 
 					{/* Left column (animates on load) */}
 					<motion.div
@@ -248,22 +253,34 @@ export default function Home() {
 						</motion.h1>
 
 						<motion.div variants={fadeUp} className="max-w-162">
-							<ParaGraph text={paraText} textSize="lg:text-xl 2xl:text-[22px]" />
+							<ParaGraph text={paraText} textSize="lg:text-xl 2xl:text-[22px] md:text-xl" />
 						</motion.div>
 
 						<motion.div
-							variants={fadeUp}
-							className="flex items-stretch gap-3 sm:gap-5 md:flex-nowrap md:items-center max-sm:*:min-w-0 max-sm:*:flex-1 max-sm:*:justify-center max-sm:*:gap-1.5! max-sm:*:px-3! max-sm:*:text-sm! max-sm:*:leading-tight! max-sm:*:whitespace-normal! max-sm:*:text-center"
-						>
-							<BookFreeTrialButton text="Call us: 01274 862623" icon={<TeleIcon />} padding="px-6" />
+  variants={fadeUp}
+  className="flex items-stretch gap-2 sm:gap-5 md:flex-nowrap md:items-center
+  max-sm:*:min-w-0 max-sm:*:flex-1 max-sm:*:justify-center max-sm:*:gap-1.5!
+  max-sm:*:px-3! max-sm:*:py-3! max-sm:*:text-xs! max-sm:*:whitespace-nowrap!
+  max-[360px]:*:px-2!"
+>
+  <BookFreeTrialButton
+    text="Call us: 01274 862623"
+    icon={
+      <span className="shrink-0 ml-1 [&>svg]:size-3.5 sm:ml-0 sm:[&>svg]:size-5">
+        <TeleIcon />
+      </span>
+    }
+    padding="px-6"
+  />
 
-							<BookFreeTrialButton
-								background="bg-[#F2FAFF]"
-								textColor="text-primary"
-								hoverBg="hover:bg-primary"
-								hoverText="hover:text-[#F2FAFF]"
-							/>
-						</motion.div>
+  <BookFreeTrialButton
+    background="bg-[#F2FAFF]"
+    textColor="text-primary"
+    hoverBg="hover:bg-primary"
+    hoverText="hover:text-[#F2FAFF]"
+    padding="px-6 md:px-10"
+  />
+</motion.div>
 					</motion.div>
 
 					{/* Right column (animates on load) */}
@@ -291,7 +308,7 @@ export default function Home() {
 							<div key={copy} className="flex shrink-0 gap-3 pr-3" aria-hidden={copy === 1}>
 								{heroIcons.map((item) => {
 									return (
-										<span className="flex h-12 md:h-15 shrink-0 items-center gap-2 whitespace-nowrap rounded-xl bg-white p-2 px-8 md:text-[20px] text-base font-semibold text-[#052F45B2] shadow-sm shadow-white/25" key={item.text}>
+										<span className="flex h-10 md:h-15 shrink-0 items-center gap-2 whitespace-nowrap rounded-xl bg-white p-2 px-3 md:px-8 md:text-[20px] text-sm font-semibold text-[#052F45B2] shadow-sm shadow-white/25" key={item.text}>
 											{item.icon}
 											{item.text}
 										</span>
@@ -304,7 +321,7 @@ export default function Home() {
 
 				{/* WhatsApp button */}
 				<motion.a
-					href="https://wa.me/44XXXXXXXXXX"
+					href={whatsappUrl}
 					target="_blank"
 					rel="noopener noreferrer"
 					aria-label="Chat on WhatsApp"
@@ -324,19 +341,19 @@ export default function Home() {
 			{/**Trusted Across cards  */}
 			{/* ======================================= */}
 
-			<section className="grid h-auto w-full place-items-center overflow-hidden md:px-8 lg:px-8 2xl:px-0">
-				<div className="flex w-full max-w-[1250px] 2xl:max-w-360 flex-col items-center justify-center py-10 md:py-20 gap-10 px-4 sm:px-4 md:px-0 lg:px-0">
-					<Reveal className="flex flex-col gap-3 items-center justify-center text-center">
-						<HeaderPara text="TRUSTED ACROSS YORKSHIRE" textSize="lg:text-[24px] md:text-[22px] text-[18px]" />
-						<MainHeader text={"Why choose RJD Hearing Care"} textSize="lg:text-[48px] md:text-[40px] text-[28px] " font="font-gelasio" />
+			<section className="grid h-auto w-full place-items-center overflow-hidden md:px-8 lg:px-8 2xl:px-0" id="trusted-Across">
+				<div className="flex w-full max-w-[1250px] 2xl:max-w-360 flex-col items-center justify-center py-6 sm:py-10 md:py-20 gap-4 sm:gap-10 px-4 sm:px-4 md:px-0 lg:px-0">
+					<Reveal className="flex flex-col gpa-2 sm:gap-3 items-center justify-center text-center">
+						<HeaderPara text="TRUSTED ACROSS YORKSHIRE" textSize="lg:text-2xl md:text-[22px] text-base" />
+						<MainHeader text={"Why choose RJD Hearing Care"} textSize="lg:text-[48px] md:text-[40px] sm:text-[28px] text-2xl " font="font-gelasio" />
 						<ParaGraph textSize=" text-[16px] md:text-[20px]  " text={"Six reasons patients across Yorkshire trust us with their hearing, year after year."} />
 					</Reveal>
 
-					<Stagger className="grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-2 xl:grid-cols-3">
+					<Stagger className="grid grid-cols-1 gap-x-6 gap-y-4 sm:gap-y-8 sm:grid-cols-2 xl:grid-cols-3">
 						{reasonCardItems.map((item) => {
 							return (
 								<Item key={item.headerText} className="h-full">
-									<div className="group relative flex h-full flex-col items-center justify-start gap-4 md:gap-4 xl:gap-6 overflow-hidden rounded-2xl border border-primary/20 bg-white px-6 lg:px-10 py-6 text-center transition-all duration-300 ease-out hover:-translate-y-2 hover:border-primary hover:shadow-xl hover:shadow-primary/25 motion-reduce:transition-none motion-reduce:hover:translate-y-0">
+									<div className="group relative flex h-full flex-col items-center justify-start gap-2 md:gap-4 xl:gap-6 overflow-hidden rounded-2xl border border-primary/20 bg-white px-6 lg:px-10 py-4 sm:py-6 text-center transition-all duration-300 ease-out hover:-translate-y-2 hover:border-primary hover:shadow-xl hover:shadow-primary/25 motion-reduce:transition-none motion-reduce:hover:translate-y-0">
 
 										<div className="pointer-events-none absolute inset-0 bg-linear-to-b from-primary/10 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
 
@@ -363,7 +380,7 @@ export default function Home() {
 			{/* ======================================= */}
 			{/**Journey section  */}
 			{/* ======================================= */}
-			<section className="relative w-full overflow-hidden bg-[#03B2E71A] py-15 lg:py-20 md:px-8 lg:px-8 2xl:px-0">
+			<section className="relative w-full overflow-hidden bg-[#03B2E71A] py-6 sm:py-10 md:py-15 lg:py-20 md:px-8 lg:px-8 2xl:px-0" id="journey-section">
 
 				{/* Background vector */}
 				<div className="pointer-events-none absolute inset-0 z-0">
@@ -378,15 +395,15 @@ export default function Home() {
 				</div>
 
 				{/* Content */}
-				<div className="relative z-10 mx-auto w-full max-w-[1250px] 2xl:max-w-360 px-2 sm:px-8 lg:px-0 h-auto">
+				<div className="relative z-10 mx-auto w-full max-w-[1250px] 2xl:max-w-360 px-4 sm:px-8 lg:px-0 h-auto">
 
 					{/* Heading */}
-					<Reveal className=" mb-4 md:mb-12 flex flex-col items-center justify-center md:gap-4 text-center ">
-						<HeaderPara text="YOUR JOURNEY" textSize="lg:text-[24px] md:text-[22px] text-[18px]" />
-						<MainHeader text="How We Help You" textSize="lg:text-[48px] md:text-[40px] text-[28px]" font="font-gelasio" />
+					<Reveal className=" mb-2 sm:mb-4 md:mb-12 flex flex-col items-center justify-center md:gap-4 text-center ">
+						<HeaderPara text="YOUR JOURNEY"  />
+						<MainHeader text="How We Help You" textSize="lg:text-[48px] md:text-[40px] sm:text-[28px] text-[26px]" font="font-gelasio" />
 					</Reveal>
 
-					<div className="flex lg:flex-row flex-col items-center gap-8 md:gap-10  lg:gap-15">
+					<div className="flex lg:flex-row flex-col items-center gap-4 sm:gap-8 md:gap-10 lg:gap-15">
 
 						{/* Left: image (desktop only) */}
 						<Reveal variants={fadeLeft} className="hidden lg:flex w-full lg:max-w-[630px] shrink-0">
@@ -412,23 +429,23 @@ export default function Home() {
 									<motion.li
 										key={step.title}
 										variants={fadeUp}
-										className="relative pb-8 md:pb-15 lg:pb-15  xl:pb-25 pl-15 sm:pl-20 last:pb-0 lg:last:pb-0 sm:pl-24"
+										className="relative pb-5 md:pb-15 lg:pb-15  xl:pb-25 pl-12 sm:pl-20 last:pb-0 lg:last:pb-0 sm:pl-24"
 									>
 										{/* Number circle */}
-										<div className="absolute left-0 top-0 z-10 grid size-12 md:size-15 place-items-center rounded-full bg-primary text-xl font-semibold text-white">
+										<div className="absolute left-0 top-0 z-10 grid size-8 md:size-15 place-items-center rounded-full bg-primary text-sm md:text-xl font-semibold text-white">
 											{index + 1}
 										</div>
 
 										{/* Line */}
-										<div className="absolute bottom-0 left-6 md:left-7.5 top-12 md:top-15 w-px -translate-x-1/2 bg-primary" />
-										<div className="flex flex-col gap-2 md:gap-2 lg:gap-5">
+										<div className="absolute bottom-0 left-4 md:left-7.5 top-4 md:top-15 w-px -translate-x-1/2 bg-primary" />
+										<div className="flex flex-col md:gap-2 lg:gap-5">
 											<MainHeader
 												text={step.title}
 												textColor="text-primary"
 												textSize=" text-[20px] md:text-2xl lg:text-[28px]"
 												font="font-gelasio"
 											/>
-											<ParaGraph text={step.text} textSize=" text-[16px] md:text-base lg:text-[18px]" />
+											<ParaGraph text={step.text} textSize=" text-sm md:text-base lg:text-[18px]" />
 										</div>
 									</motion.li>
 								))}
@@ -440,7 +457,7 @@ export default function Home() {
 									textColor="text-[#F2FAFF]"
 									hoverBg="hover:bg-[#F2FAFF]"
 									hoverText="hover:text-primary"
-									width="w-[281px]"
+									width="max-w-[281px]"
 								/>
 							</Reveal>
 						</div>
@@ -452,7 +469,7 @@ export default function Home() {
 			{/** Featured Section */}
 			{/* ======================================= */}
 
-			<section className="relative w-full overflow-hidden py-15 lg:py-25 md:px-8 lg:px-8 2xl:px-0">
+			<section id="featured-section" className="relative w-full overflow-hidden py-6 sm:py-10 md:py-15 lg:py-25 md:px-8 lg:px-8 2xl:px-0">
 
 				{/* Background image*/}
 				<div className="pointer-events-none absolute inset-0 z-0">
@@ -467,12 +484,12 @@ export default function Home() {
 				</div>
 
 				{/* Header row */}
-				<Reveal className="relative z-10 mx-auto mb-8 flex w-full max-w-[1250px] 2xl:max-w-360 flex-col gap-6 lg:gap-10 px-4 sm:px-8  md:mb-8 md:flex-row md:items-end md:justify-between lg:mb-10 lg:px-0">
+				<Reveal className="relative z-10 mx-auto mb-4 sm:mb-8 flex w-full max-w-[1250px] 2xl:max-w-360 flex-col gap-4 sm:gap-6 lg:gap-10 px-4 sm:px-8  md:mb-8 md:flex-row md:items-end md:justify-between lg:mb-10 lg:px-0">
 
 					<div className="flex flex-col items-start gap-1 md:gap-4 ">
-						<div className="flex items-center gap-5 whitespace-nowrap">
-							<div className="h-0.5 w-13 bg-[#03B2E7]" />
-							<HeaderPara text={"Featured Services"} textColor={"text-[#03B2E7]"} textSize="lg:text-[24px] md:text-[22px] text-[18px]" />
+						<div className="flex items-center gap-3 md:gap-5 whitespace-nowrap">
+							<div className="h-0.5 w-8 md:w-13 bg-[#03B2E7]" />
+							<HeaderPara text={"Featured Services"} textColor={"text-[#03B2E7]"} textSize="lg:text-[24px] md:text-[22px] text-sm" />
 						</div>
 
 						<MainHeader text="Everything your ears need" font="font-gelasio" textSize="lg:text-[48px] md:text-[40px] text-[25px]" />
@@ -482,15 +499,15 @@ export default function Home() {
 						background="bg-primary"
 						textColor="text-[#F2FAFF]"
 						hoverBg="hover:bg-[#F2FAFF]"
-						hoverText="hover:text-primary w-full sm:w-fit"
+						hoverText="hover:text-primary w-fit"
 					/>
 				</Reveal>
 
 				{/* Cards grid */}
-				<Stagger className="relative z-10 mx-auto grid w-full max-w-[1250px] 2xl:max-w-360 grid-cols-1 gap-6 px-4 sm:grid-cols-2  lg:grid-cols-4 lg:grid-rows-2 lg:px-0">
+				<Stagger className="relative z-10 mx-auto grid w-full max-w-[1250px] 2xl:max-w-360 grid-cols-1 gap-4 sm:gap-6 px-4 sm:grid-cols-2  lg:grid-cols-4 lg:grid-rows-2 lg:px-0">
 
 					{/* Big card*/}
-					<Item className="relative min-h-80 overflow-hidden rounded-2xl sm:col-span-2 lg:row-span-2">
+					<Item className="relative min-h-55 overflow-hidden rounded-2xl sm:col-span-2 lg:row-span-2">
 						<Image
 							src={HearingAids}
 							alt="Hearing Aids"
@@ -500,7 +517,7 @@ export default function Home() {
 							className="absolute inset-0 z-0 h-full w-full object-cover"
 						/>
 						<div className="absolute inset-x-0  bottom-0 z-20 bg-linear-to-t from-black/80 to-transparent px-6 pb-5 pt-20 sm:px-10">
-							<MainHeader text="Hearing Aids" textSize="text-3xl lg:text-[38px]" font="font-gelasio" textColor="text-white" />
+							<MainHeader text="Hearing Aids" textSize="text-2xl sm:text-3xl lg:text-[38px]" font="font-gelasio" textColor="text-white" />
 							<ParaGraph text="Every major brand, fitted and tuned by qualified audiologists." textColor="text-white" textSize="text-base" />
 						</div>
 					</Item>
@@ -509,16 +526,16 @@ export default function Home() {
 					{journeyCardDetail.map((item) => (
 						<Item
 							key={item.headerText}
-							className={`${item.bg} flex h-full w-full flex-col gap-2 md:gap-4 overflow-hidden rounded-2xl p-5`}
+							className={`${item.bg} flex h-full w-full flex-col gap-1 mb:gap-2 md:gap-4 overflow-hidden rounded-2xl p-5`}
 						>
-							<div className=" size-10 sm:size-12  shrink-0">
+							<div className="size-8 mb:size-10 sm:size-12  shrink-0">
 								<Image src={item.imgSrc} width={60} height={60} alt={item.headerText} className="object-cover" />
 							</div>
 
 							<MainHeader
 								text={item.headerText}
 								textColor={item.headerTextColor}
-								font="font-gelasio" textSize="text-[20px] md:text-2xl 2xl:text-[28px]" />
+								font="font-gelasio" textSize="text-xl md:text-2xl 2xl:text-[28px]" />
 							<div className="max-w-145">
 								<ParaGraph
 									text={item.paraText}
@@ -532,7 +549,7 @@ export default function Home() {
 			{/* ======================================= */}
 			{/**Services Section  */}
 			{/* ======================================= */}
-			<section className="relative w-full overflow-hidden bg-linear-[118.47deg,#0E4461_0%,#04293D_100%]" id="Services">
+			<section  className="relative w-full overflow-hidden bg-linear-[118.47deg,#0E4461_0%,#04293D_100%]" id="Services">
 				{/* Background image */}
 				<Image
 					src={ServicesBg}
@@ -544,12 +561,12 @@ export default function Home() {
 					className="pointer-events-none absolute bottom-0 right-0 z-0 h-auto w-full"
 				/>
 
-				<div className="relative z-10 mx-auto flex w-full max-w-360 flex-col items-center gap-12 px-4 py-16 text-center sm:px-8 lg:gap-20 lg:px-12 lg:py-25">
+				<div className="relative z-10 mx-auto flex w-full max-w-360 flex-col items-center gap-4 sm:gap-6 sm:gap-12 px-4 py-6 sm:py-10 md:py-16 text-center sm:px-8 lg:gap-20 lg:px-12 lg:py-25">
 
 					<Reveal className="flex w-full flex-col items-center justify-center gap-2 md:gap-5">
-						<HeaderPara text="Featured Services" textColor="text-primary" textSize="lg:text-[24px] md:text-[22px] text-[18px]" />
-						<MainHeader text="Why patients stay with us for years" textColor="text-white" textSize="lg:text-[48px] md:text-[44px] sm:text-[28px] text-[24px]" font="font-gelasio" />
-						<ParaGraph text="A clear, unhurried path from first phone call to lifelong hearing care." textColor="text-white" />
+						<HeaderPara text="Featured Services" textColor="text-primary" textSize="lg:text-2xl md:text-[22px] text-lg" />
+						<MainHeader text="Why patients stay with us for years" textColor="text-white" textSize="lg:text-[48px] md:text-[40px] sm:text-[28px] text-2xl" font="font-gelasio" />
+						<ParaGraph text="A clear, unhurried path from first phone call to lifelong hearing care." textColor="text-white" textSize="lg:text-lg 2xl:text-xl md:text-lg" />
 					</Reveal>
 
 					{/* Timeline */}
@@ -564,18 +581,18 @@ export default function Home() {
 									initial="hidden"
 									whileInView="show"
 									viewport={{ once: true, amount: 0.3 }}
-									className="relative min-h-20 pb-8 sm:pb-13.5 pl-20 md:pl-28 last:pb-0 lg:grid lg:grid-cols-2 lg:pl-0"
+									className="relative min-h-20 pb-4 sm:pb-13.5 pl-15  sm:pl-20 md:pl-28 last:pb-0 lg:grid lg:grid-cols-2 lg:pl-0"
 								>
 
-									<div className="absolute left-0 top-0 z-10 grid size-14 sm:size-15 p-4 md:p-0 md:size-20 place-items-center rounded-full bg-white lg:left-1/2 lg:-translate-x-1/2">
+									<div className="absolute left-0 top-0 z-10 grid size-10 sm:size-15 p-2.5 sm:p-4 md:p-0 md:size-20 place-items-center rounded-full bg-white lg:left-1/2 lg:-translate-x-1/2">
 										<Image src={step.src} alt="" width={35} height={26} className="h-full w-full md:w-auto md:h-auto" />
 									</div>
 
 									{index < steps.length - 1 && (
-										<div className="absolute left-7.5 md:left-10 top-15 md:top-20 -bottom-34 w-px -translate-x-1/2 bg-white/30 lg:left-1/2" />
+										<div className="absolute left-5 sm:left-7.5 md:left-10 top-10 sm:top-15 md:top-20 -bottom-15 sm:-bottom-25 md:-bottom-34 w-px -translate-x-1/2 bg-white/30 lg:left-1/2" />
 									)}
 
-									<div className={`flex flex-col gap-3 ${isLeft ? "lg:col-start-1 lg:items-end lg:pr-20 lg:text-right" : "lg:col-start-2 lg:pl-20"}`}>
+									<div className={`flex flex-col gap-2 sm:gap-3 ${isLeft ? "lg:col-start-1 lg:items-end lg:pr-20 lg:text-right" : "lg:col-start-2 lg:pl-20"}`}>
 										<h2 className="text-white text-[18px] sm:text-[24px] md:text-[28px] lg:text-[32px] font-gelasio font-bold " >{`${index + 1}. ${step.title}`}</h2>
 										<ParaGraph text={step.text} textColor="text-white/80" textSize=" lg:text-lg xl:text-[20px] font-sans" />
 									</div>
@@ -603,7 +620,7 @@ export default function Home() {
 			{/* ======================================= */}
 			<section className="relative w-full overflow-hidden lg:flex lg:min-h-150 lg:items-center" id="HearingAids">
 
-				<div className="relative z-10 mx-auto flex w-full max-w-360 flex-col items-center gap-4 sm:gap-8 px-4 py-10 sm:py-14 md:py-18 text-center sm:px-8 lg:gap-10 lg:px-12 lg:py-25">
+				<div className="relative z-10 mx-auto flex w-full max-w-360 flex-col items-center gap-4 sm:gap-8 px-4 py-6 mb:py-10 sm:py-14 md:py-18 text-center sm:px-8 lg:gap-10 lg:px-12 lg:py-25">
 
 					{/* Heading */}
 					<Reveal className="flex w-full flex-col items-center justify-center gap-1 sm:gap-3 lg:gap-4">
@@ -646,7 +663,7 @@ export default function Home() {
 
 												<p className="text-base font-bold text-[#1E1E1E] lg:text-lg">{item.heading}</p>
 
-												<ParaGraph text={item.para} textColor="text-[#454545]" textSize="text-sm lg:text-base" />
+												<ParaGraph text={item.para} textColor="text-[#454545] max-w-90" textSize="text-sm md:text-base lg:text-xl leading-normal md:leading-[20px] lg:leading-[30px]"  />
 
 												<Link
 													href="#"
@@ -687,21 +704,21 @@ export default function Home() {
 				{/* Right */}
 				<Reveal
 					variants={fadeRight}
-					className="flex flex-col items-start justify-center gap-2 sm:gap-4 bg-linear-[118.47deg,#0E4461_0%,#04293D_100%] px-4 py-10 sm:px-8 sm:py-16 lg:gap-5 lg:p-14 xl:p-20 xl:pr-32"
+					className="flex flex-col items-start justify-center gap-2 sm:gap-4 bg-linear-[118.47deg,#0E4461_0%,#04293D_100%] px-4 py-6 mb:py-10 sm:px-8 sm:py-16 lg:gap-5 lg:p-14 xl:p-20 xl:pr-32"
 				>
 
-					<div className="flex items-center gap-5 whitespace-nowrap">
-						<div className="h-0.5 w-13 bg-[#03B2E7]" />
-						<HeaderPara text="HOME VISITS" textColor="text-[#03B2E7]" textSize="lg:text-[24px] md:text-[22px] text-[18px]" />
+					<div className="flex items-center gap-3 md:gap-5 whitespace-nowrap">
+						<div className="h-0.5 w-8 md:w-13 bg-[#03B2E7]" />
+						<HeaderPara text="HOME VISITS" textColor="text-[#03B2E7]" textSize="lg:text-[24px] md:text-[22px] text-sm" />
 					</div>
 					<div className="max-w-131.5">
-						<MainHeader text="Can't visit us? We'll come to you." textColor="text-white" textSize="lg:text-[48px] md:text-[44px] sm:text-[38px] text-[28px]" font="font-gelasio" />
+						<MainHeader text="Can't visit us? We'll come to you." textColor="text-white" textSize="lg:text-[48px] md:text-[44px] sm:text-[38px] text-2xl" font="font-gelasio" />
 					</div>
 
 					<ParaGraph
 						text="Many of our patients prefer the comfort of their own home. So if that suits you better, we'll simply bring the appointment to your front room."
 						textColor="text-white/80"
-						textSize="lg:text-xl 2xl:text-[20px]"
+						textSize="lg:text-xl font-medium"
 					/>
 
 					{/* Checklist */}
@@ -722,26 +739,26 @@ export default function Home() {
 			{/**Frequently asked Questions  */}
 			{/* ======================================= */}
 
-			<section className="w-full overflow-hidden py-10 md:py-20 md:px-8 lg:px-8 2xl:px-0">
-				<div className="mx-auto grid w-full max-w-[1250px] 2xl:max-w-360 grid-cols-1 mb:ga-5 gap-2 sm:gap-10 px-4 sm:px-8 lg:grid-cols-[28rem_minmax(0,1fr)] lg:gap-16 lg:px-0">
+			<section id="queries" className="w-full overflow-hidden py-6 sm:py-10 md:py-20 md:px-8 lg:px-8 2xl:px-0">
+				<div className="mx-auto grid w-full max-w-[1250px] 2xl:max-w-360 grid-cols-1 mb:gap-5 gap-2 sm:gap-10 px-4 sm:px-8 lg:grid-cols-[28rem_minmax(0,1fr)] lg:gap-16 lg:px-0">
 
 					{/* Left column */}
-					<Reveal className="relative z-10 flex w-full flex-col gap-6 sm:gap-10 md:gap-12 lg:gap-20">
+					<Reveal className="relative z-10 flex w-full flex-col gap-4 mb:gap-6 sm:gap-10 md:gap-12 lg:gap-20">
 						<div className="flex flex-col items-start gap-2">
-							<div className="flex items-center gap-5 whitespace-nowrap">
-								<div className="h-0.5 w-13 bg-[#03B2E7]" />
-								<HeaderPara text="Questions" textColor="text-[#03B2E7]" textSize="lg:text-[24px] md:text-[22px] text-[18px]" />
+							<div className="flex items-center gap-3 md:gap-5 whitespace-nowrap">
+								<div className="h-0.5 w-8 md:w-13 bg-[#03B2E7]" />
+								<HeaderPara text="Questions" textColor="text-[#03B2E7]" textSize="lg:text-[24px] md:text-[22px] text-sm" />
 							</div>
-							<MainHeader text="Frequently asked questions" textSize="lg:text-[48px] md:text-[40px] sm:text-[38px] text-[28px]" font="font-gelasio" />
+							<MainHeader text="Frequently asked questions" textSize="lg:text-[48px] md:text-[40px] sm:text-[38px] text-2xl" font="font-gelasio" />
 							<ParaGraph
 								text="Still unsure about something? Give us a call and we'll talk it through."
 								textSize="lg:text-xl 2xl:text-[20px]"
 							/>
 						</div>
 
-						<div className="flex w-full flex-col items-center gap-5 rounded-3xl border border-[#0474BC1A] bg-[#F1F8FC] px-4 py-4 sm:py-8">
-							<h2 className="font-sans text-[18px] sm:text-[24px] md:text-[27px] font-bold">Speak To The Directly</h2>
-							<BookFreeTrialButton text="Call us: 01274 862623" icon={<TeleIcon />} />
+						<div className="flex w-full flex-col items-center gap-3 sm:gap-5 rounded-3xl border border-[#0474BC1A] bg-[#F1F8FC] px-4 py-3 mb:py-4 sm:py-8">
+							<h2 className="font-sans text-base sm:text-2xl md:text-[27px] font-bold">Speak To The Directly</h2>
+							<BookFreeTrialButton text="Call us: 01274 862623" icon={<TeleIcon />} padding="md:px-10 sm:px-8 px-6" />
 						</div>
 					</Reveal>
 
@@ -771,11 +788,11 @@ export default function Home() {
 										</button>
 
 										<div
-											className={`grid transition-all duration-300 ease-in-out ${isOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
+											className={`grid px-2 transition-all duration-300 ease-in-out ${isOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
 												}`}
 										>
 											<div className="overflow-hidden">
-												<ParaGraph text={item.para} textSize="text-base md:text-xl leading-[30px]" />
+												<ParaGraph text={item.para} textSize="text-base md:text-xl leading-normal sm:leading-[20px] md:leading-[30px]" />
 												<div className="h-3 sm:h-5" />
 											</div>
 										</div>
@@ -808,7 +825,7 @@ export default function Home() {
 				{/* Right: text */}
 				<Reveal
 					variants={fadeRight}
-					className="flex flex-col items-start justify-center gap-2 mb:gap-3 sm:gap-4 bg-primary px-4 py-12 sm:px-8 sm:py-16 lg:gap-5 lg:p-14 xl:p-20 xl:pr-32"
+					className="flex flex-col items-start justify-center gap-2 mb:gap-3 sm:gap-4 bg-primary px-4 py-6 mb:py-12 sm:px-8 sm:py-16 lg:gap-5 lg:p-14 xl:p-20 xl:pr-32"
 				>
 
 					<h1 className="text-white text-2xl sm:text-display font-gelasio font-bold" > Speak to our team directly</h1>
@@ -818,12 +835,12 @@ export default function Home() {
 						textColor="text-white/80" textSize="lg:text-xl 2xl:text-[24px]"
 					/>
 
-					<div className="flex flex-col mb:flex-row transition lg:flex-col justify-between gap-2 md:gap-4 lg:gap-6">
+					<div className="flex flex-row transition lg:flex-col justify-between gap-2 md:gap-4 lg:gap-6">
 
-						<BookFreeTrialButton text="Book Your Assessment" rounded="rounded-2xl" padding="px-4 sm:px-6 md:px-10 py-4 sm:py-6" background=" bg-white" textColor="text-primary" hoverBg="bg-white/90" />
+						<BookFreeTrialButton text="Book Your Assessment" rounded="rounded-2xl" padding="px-3 sm:px-6 md:px-10 py-3 sm:py-6" background=" bg-white" textColor="text-primary" hoverBg="bg-white/90" />
 						<Link
 							href="#"
-							className="flex items-center justify-center gap-4 whitespace-nowrap rounded-2xl border border-white  px-6 py-3 text-[16px] font-semibold text-[#F2FAFF] transition hover:bg-primary/80  bg-white/10 backdrop-blur-3xl"
+							className="flex items-center justify-center gap-2 sm:gap-4 whitespace-nowrap rounded-2xl border border-white px-3 mb:px-6 py-3 text-sm sm:text-[16px] font-semibold text-[#F2FAFF] transition hover:bg-primary/80  bg-white/10 backdrop-blur-3xl"
 						>
 							<TeleIcon />{"01274 862623"}
 						</Link>
@@ -834,10 +851,10 @@ export default function Home() {
 			</section>
 
 			{/* ======================================= */}
-			{/**Testimonials (marquee left as is) */}
+			{/**Testimonials */}
 			{/* ======================================= */}
 
-			<section id="testimonials" className="w-full overflow-hidden py-10 md:py-12 lg:py-14">
+			<section id="testimonials" className="w-full overflow-hidden py-6 sm:py-10 md:py-12 lg:py-14">
 
 				<Reveal className="mx-auto flex w-full max-w-360 flex-col items-center px-4 text-center sm:px-8">
 					<MainHeader text="Testimonials" textSize="lg:text-[48px] md:text-[40px] md:text-[38px] text-[30px]" font="font-gelasio" />

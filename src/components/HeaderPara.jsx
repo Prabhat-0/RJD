@@ -7,7 +7,7 @@ const HeaderPara = ({
   leading="leading-[40px]"
 }) => {
   return (
-    <p className={`${font} text-lg sm:${textSize} ${textColor} lg:${tracking} md:tracking-[0.2em] tracking-widest ${leading} font-medium`}>
+    <p className={`${font} text-sm sm:${textSize} ${textColor} lg:${tracking} md:tracking-[0.2em] tracking-widest md:${leading} leading-7.5 font-medium`}>
       {text.toUpperCase()}
     </p>
   )

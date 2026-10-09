@@ -11,14 +11,14 @@ import BookFreeTrialButton from './BookFreeTrialButton';
 
 const navItems = [
     { label: "Home", href: "/" },
-    { label: "Hearing Aids", href: "/hearing-aids" },
-    { label: "Services", href: "/services" },
-    { label: "Shop", href: "/shop" },
-    { label: "Fees", href: "/fees" },
-    { label: "Audiology Expert", href: "/audiology-expert" },
-    { label: "Our Location", href: "/our-location" },
-    { label: "Contact Us", href: "/contact-us" },
-    { label: "About Us", href: "/about-us" },
+    { label: "Hearing Aids", href: "#HearingAids" },
+    { label: "Services", href: "/#Services" },
+    { label: "Shop", href: "/#HearingAids" },
+    { label: "Fees", href: "/#HomeVisits" },
+    { label: "Audiology Expert", href: "/#featured-section" },
+    { label: "Our Location", href: "/#locations" },
+    { label: "Contact Us", href: "/contactUs" },
+    { label: "About Us", href: "/#TeamsVisit" },
 ];
 
 const NavBar = () => {
@@ -41,7 +41,7 @@ const NavBar = () => {
 
     return (
 
-        <nav className='fixed top-0 z-50 h-(--nav-h) w-full bg-background font-sans shadow-md shadow-black/5 '>
+        <nav className='fixed top-0 z-50 py-1 md:py-5 w-full bg-background font-sans shadow-md shadow-black/5 '>
 
             {/* Inner container */}
             <div className='relative mx-auto flex h-full w-full max-w-[1250px] items-center justify-between gap-5 px-4 sm:px-8 xl:px-0 min-[1400px]:gap-7.5 2xl:max-w-360 2xl:px-0'>
@@ -128,6 +128,7 @@ const NavBar = () => {
                     </Link>
                 </div>
             </div>
+            
         </nav>
     )
 }

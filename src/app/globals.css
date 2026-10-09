@@ -3,16 +3,19 @@
 :root {
   color-scheme: light;
   --background: #ffffff;
-  --foreground: #171717;
   --nav-h: 5rem;
 }
 
 @media (min-width: 48rem) {
   :root {
-    --nav-h: 6.875rem;
+    --nav-h:6.875rem;
   }
 }
-
+@media (max-width: 30rem) {
+  :root {
+    --nav-h:3.5rem;
+  }
+}
 html {
   scroll-padding-top: var(--nav-h);
 }
@@ -37,7 +40,7 @@ body {
   --font-fraunces: var(--font-fraunces-next), Georgia, serif;
   --font-gelasio: var(--font-gelasio), Georgia, serif;
 
-  --text-display: clamp(2rem, 1.679rem + 2vw, 4.25rem);
+  --text-display: clamp(1.5rem, 1.5rem + 2vw, 4.25rem);
   --text-display--line-height: clamp(1,2vw,1.1);
   --text-display--letter-spacing: -0.02em;
 }

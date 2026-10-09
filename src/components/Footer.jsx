@@ -45,7 +45,7 @@ const locations = [
 const quickLinks = ["Audiology Expert", "News", "Shop"];
 
 const FooterHeading = ({ children }) => (
-    <h3 className='mb-5 border-b border-white/20 pb-4 font-fraunces text-xl font-bold text-white lg:text-2xl'>{children}</h3>
+    <h3 className='mb-2 sm:mb-5 border-b border-white/20 pb-2 sm:pb-4 font-fraunces text-xl font-bold text-white lg:text-2xl'>{children}</h3>
 );
 
 
@@ -63,10 +63,10 @@ const Footer = () => {
     return (
         <footer id="footer" className='w-full bg-nav-items'>
 
-            <div className='mx-auto grid w-full 2xl:max-w-360 max-w-[1250px] grid-cols-1 gap-10 px-4 py-12 sm:px-8 md:grid-cols-2 lg:grid-cols-4 lg:gap-12 lg:px-18 xl:px-0 2xl:px-0 lg:py-16'>
+            <div className='mx-auto grid w-full 2xl:max-w-360 max-w-[1250px] grid-cols-1 gap-8 sm:gap-10 px-4 py-6 sm:py-12 sm:px-8 md:grid-cols-2 lg:grid-cols-4 lg:gap-12 lg:px-18 xl:px-0 2xl:px-0 lg:py-16'>
 
                 <div className='flex flex-col gap-5'>
-                    <Image src={RJDFooter} alt="RJD Hearing Care" width={98} height={60} className='h-auto w-24 sm:w-28' />
+                    <Image src={RJDFooter} alt="RJD Hearing Care" width={98} height={60} className='h-auto w-18 sm:w-28' />
 
                     <ParaGraph
                         text="You will benefit from our incredibly successful ‘holistic fitting method’ developed by Robert Donnan. It’s a very simple, person-led approach to the fitting of hearing aids, structured around our free trial. No-one else offers a non-structured trial process with so much help offered to get you hearing better again."
@@ -74,27 +74,27 @@ const Footer = () => {
                         textSize='text-[10px] sm:text-sm lg:text-base'
                     />
 
-                    <div className='flex flex-col gap-4 border-t border-white/10 pt-4 '>
+                    <div className='flex flex-col gap-2 sm:gap-4 border-t border-white/10 pt-4 '>
                         <Link
                             href="tel:01274862623"
-                            className="flex items-center gap-2 whitespace-nowrap text-[16px] font-semibold text-[#F2FAFF] transition-colors hover:text-primary"
+                            className="flex items-center gap-2 whitespace-nowrap text-sm sm:text-base font-semibold text-[#F2FAFF] transition-colors hover:text-primary"
                         >
                             <TeleIcon /> 01274 862623
                         </Link>
                         <Link
                             href="mailto:info@rjdhearingcare.co.uk"
-                            className="flex items-center gap-2 break-all border-t border-white/10 pt-4 text-[16px] font-semibold text-[#F2FAFF] transition-colors hover:text-primary"
+                            className="flex items-center gap-2 break-all border-t border-white/10 pt-4 text-sm sm:text-base font-semibold text-[#F2FAFF] transition-colors hover:text-primary"
                         >
                             <FaMessage className='shrink-0' /> info@rjdhearingcare.co.uk
                         </Link>
                     </div>
                 </div>
 
-                <div>
+                <div  id="locations">
                     <FooterHeading>Our Locations</FooterHeading>
-                    <ul className='flex flex-col gap-3 '>
+                    <ul className='flex flex-col gap-1 md:gap-3 '>
                         {locations.map((loc) => (
-                            <li key={loc.id} className='flex items-start gap-2 transition-all duration-300 ease-in text-sm leading-relaxed text-white/70 text-[16px] hover:text-white'>
+                            <li key={loc.id} className='flex items-start gap-2 transition-all duration-300 ease-in leading-relaxed text-white/70 text-xs sm:text-base hover:text-white'>
                                 <span className='mt-[0.6em] size-1.5 shrink-0 rounded-full bg-current space-x-2.5 font-sans' />
                                 <span >{loc.name}</span>
                             </li>
@@ -104,9 +104,9 @@ const Footer = () => {
 
                 <div>
                     <FooterHeading>Services</FooterHeading>
-                    <ul className='flex flex-col gap-3'>
+                    <ul className='flex flex-col gap-1 md:gap-3'>
                         {services.map((item) => (
-                            <li key={item}>
+                            <li key={item} className=' leading-relaxed text-white/70 text-xs sm:text-base hover:text-white'>
                                 <FooterLink>{item}</FooterLink>
                             </li>
                         ))}
@@ -116,17 +116,14 @@ const Footer = () => {
 
                 <div>
                     <FooterHeading>Quick Links</FooterHeading>
-                    <ul className='flex flex-col gap-3'>
+                    <ul className='flex flex-col gap-1 md:gap-3'>
                         {quickLinks.map((item) => (
-                            <li key={item}>
+                            <li key={item} className='leading-relaxed text-white/70 text-xs sm:text-base hover:text-white'>
                                 <FooterLink>{item}</FooterLink>
                             </li>
                         ))}
                     </ul>
                 </div>
-
-
-
             </div>
 
 
