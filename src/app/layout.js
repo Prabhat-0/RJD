@@ -23,8 +23,34 @@ const gelasio=Gelasio({
 })
 
 export const metadata = {
-  title: "RJD | RJD Hearing Services",
+   metadataBase: new URL("http://localhost:3000"),
+  title:{
+    template:"%s | RJD Hearing Services",
+    default:"RJD Hearing Services"
+  },
   description: "RJD Hearing services provides affordable hearing devices with custom adjustement per client requirement",
+  openGraph: {
+    images: [
+      {
+        url: '/logo.png', 
+        width: 1200,
+        height: 630,
+      },
+    {title: 'RJD',
+    description: 'The all hearing solutions at one place',
+    type: 'article',
+    publishedTime: '2027-01-01T00:00:00.000Z',
+    authors: ['Seb', 'Josh'],}]
+  },
+  twitter: {
+    card: 'Twitter_Card',
+    title: 'twitter',
+    description: 'The twitter card',
+    siteId: '1467726470533754880',
+    creator: '@rjd',
+    creatorId: '1467726470533754880',
+    images: [{url:'/logo.png',width:1200,height:630}], // Must be an absolute URL
+  },
 };
 
 export default function RootLayout({ children }) {
